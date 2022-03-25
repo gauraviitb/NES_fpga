@@ -22,13 +22,20 @@ module RAM_64K(
     input clk,
     input [15:0] addr,
     inout [7:0] data,
-    input rst_n,
     input rw_n,
     input cs_n
     );
 
-always @(posedge clk) begin
+reg [7:0] memory[65535:0];
+reg [7:0] temp_data;
 
+always @(posedge clk) begin
+	if(cs_n == 0 && rw_n == 0)
+		memory[addr] <= data;
+	else if (cs_n == 0 && rw_n == 1)
+		temp_data <= memory[addr];
 end
+
+assign data = (cs_n == 0 && rw_n == 1) ? temp_data : 'hz; 
 
 endmodule
