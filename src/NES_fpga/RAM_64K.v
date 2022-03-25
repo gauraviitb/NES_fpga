@@ -27,5 +27,8 @@ module RAM_64K(
     input cs_n
     );
 
+always @(posedge clk) begin
+
+end
 
 endmodule
