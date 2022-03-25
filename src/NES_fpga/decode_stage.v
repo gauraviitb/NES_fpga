@@ -308,21 +308,29 @@ instt_size[15][14] = 3;
 end
 
 initial begin
+//0:no mode, 1: accumulator
+//2:Imm, 3: absolute
+//4:ZP, 5: ZP,x
+//6:ABS,x 7: Implied
+//8:Relative, 9: IND,X
+//10:IND,Y , 11:Indirect
+//12:ZP,Y, 13:ABS,Y
+
 
 			//r  c
 			//-->
 			//-->
 			
 //row:0
-addressing_mode[0][0] = 1;
-addressing_mode[0][1] = 2;
+addressing_mode[0][0] = 7;
+addressing_mode[0][1] = 9;
 addressing_mode[0][2] = 0;
 addressing_mode[0][3] = 0;
 addressing_mode[0][4] = 0;
-addressing_mode[0][5] = 2;
-addressing_mode[0][6] = 2;
+addressing_mode[0][5] = 4;
+addressing_mode[0][6] = 4;
 addressing_mode[0][7] = 0;
-addressing_mode[0][8] = 1;
+addressing_mode[0][8] = 7;
 addressing_mode[0][9] = 2;
 addressing_mode[0][10] = 1;
 addressing_mode[0][11] = 0;
@@ -331,32 +339,32 @@ addressing_mode[0][13] = 3;
 addressing_mode[0][14] = 3;
 
 //row:1
-addressing_mode[1][0] = 2;
-addressing_mode[1][1] = 2;
+addressing_mode[1][0] = 8;
+addressing_mode[1][1] = 10;
 addressing_mode[1][2] = 0;
 addressing_mode[1][3] = 0;
 addressing_mode[1][4] = 0;
-addressing_mode[1][5] = 2;
-addressing_mode[1][6] = 2;
+addressing_mode[1][5] = 5;
+addressing_mode[1][6] = 5;
 addressing_mode[1][7] = 0;
-addressing_mode[1][8] = 1;
-addressing_mode[1][9] = 3;
+addressing_mode[1][8] = 7;
+addressing_mode[1][9] = 13;
 addressing_mode[1][10] = 0;
 addressing_mode[1][11] = 0;
 addressing_mode[1][12] = 0;
-addressing_mode[1][13] = 3;
-addressing_mode[1][14] = 3;
+addressing_mode[1][13] = 6;
+addressing_mode[1][14] = 6;
 
 //row:2
 addressing_mode[2][0] = 3;
-addressing_mode[2][1] = 2;
+addressing_mode[2][1] = 9;
 addressing_mode[2][2] = 0;
 addressing_mode[2][3] = 0;
-addressing_mode[2][4] = 2;
-addressing_mode[2][5] = 2;
-addressing_mode[2][6] = 2;
+addressing_mode[2][4] = 4;
+addressing_mode[2][5] = 4;
+addressing_mode[2][6] = 4;
 addressing_mode[2][7] = 0;
-addressing_mode[2][8] = 1;
+addressing_mode[2][8] = 7;
 addressing_mode[2][9] = 2;
 addressing_mode[2][10] = 1;
 addressing_mode[2][11] = 0;
@@ -365,32 +373,32 @@ addressing_mode[2][13] = 3;
 addressing_mode[2][14] = 3;
 
 //row:3
-addressing_mode[3][0] = 2;
-addressing_mode[3][1] = 2;
+addressing_mode[3][0] = 8;
+addressing_mode[3][1] = 10;
 addressing_mode[3][2] = 0;
 addressing_mode[3][3] = 0;
 addressing_mode[3][4] = 0;
-addressing_mode[3][5] = 2;
-addressing_mode[3][6] = 2;
+addressing_mode[3][5] = 5;
+addressing_mode[3][6] = 5;
 addressing_mode[3][7] = 0;
-addressing_mode[3][8] = 1;
-addressing_mode[3][9] = 3;
+addressing_mode[3][8] = 7;
+addressing_mode[3][9] = 13;
 addressing_mode[3][10] = 0;
 addressing_mode[3][11] = 0;
 addressing_mode[3][12] = 0;
-addressing_mode[3][13] = 3;
-addressing_mode[3][14] = 3;
+addressing_mode[3][13] = 6;
+addressing_mode[3][14] = 6;
 
 //row:4
-addressing_mode[4][0] = 1;
-addressing_mode[4][1] = 2;
+addressing_mode[4][0] = 7;
+addressing_mode[4][1] = 9;
 addressing_mode[4][2] = 0;
 addressing_mode[4][3] = 0;
 addressing_mode[4][4] = 0;
-addressing_mode[4][5] = 2;
-addressing_mode[4][6] = 2;
+addressing_mode[4][5] = 4;
+addressing_mode[4][6] = 4;
 addressing_mode[4][7] = 0;
-addressing_mode[4][8] = 1;
+addressing_mode[4][8] = 7;
 addressing_mode[4][9] = 2;
 addressing_mode[4][10] = 1;
 addressing_mode[4][11] = 0;
@@ -399,191 +407,191 @@ addressing_mode[4][13] = 3;
 addressing_mode[4][14] = 3;
 
 //row:5
-addressing_mode[5][0] = 2;
-addressing_mode[5][1] = 2;
+addressing_mode[5][0] = 8;
+addressing_mode[5][1] = 10;
 addressing_mode[5][2] = 0;
 addressing_mode[5][3] = 0;
 addressing_mode[5][4] = 0;
-addressing_mode[5][5] = 2;
-addressing_mode[5][6] = 2;
+addressing_mode[5][5] = 5;
+addressing_mode[5][6] = 5;
 addressing_mode[5][7] = 0;
-addressing_mode[5][8] = 1;
-addressing_mode[5][9] = 3;
+addressing_mode[5][8] = 7;
+addressing_mode[5][9] = 13;
 addressing_mode[5][10] = 0;
 addressing_mode[5][11] = 0;
 addressing_mode[5][12] = 0;
-addressing_mode[5][13] = 3;
-addressing_mode[5][14] = 3;
+addressing_mode[5][13] = 6;
+addressing_mode[5][14] = 6;
 
 //row:6
-addressing_mode[6][0] = 1;
-addressing_mode[6][1] = 2;
+addressing_mode[6][0] = 7;
+addressing_mode[6][1] = 9;
 addressing_mode[6][2] = 0;
 addressing_mode[6][3] = 0;
 addressing_mode[6][4] = 0;
-addressing_mode[6][5] = 2;
-addressing_mode[6][6] = 2;
+addressing_mode[6][5] = 4;
+addressing_mode[6][6] = 4;
 addressing_mode[6][7] = 0;
-addressing_mode[6][8] = 1;
+addressing_mode[6][8] = 7;
 addressing_mode[6][9] = 2;
 addressing_mode[6][10] = 1;
 addressing_mode[6][11] = 0;
-addressing_mode[6][12] = 3;
+addressing_mode[6][12] = 11;
 addressing_mode[6][13] = 3;
 addressing_mode[6][14] = 3;
 
 //row:7
-addressing_mode[7][0] = 2;
-addressing_mode[7][1] = 2;
+addressing_mode[7][0] = 8;
+addressing_mode[7][1] = 10;
 addressing_mode[7][2] = 0;
 addressing_mode[7][3] = 0;
 addressing_mode[7][4] = 0;
-addressing_mode[7][5] = 2;
-addressing_mode[7][6] = 2;
+addressing_mode[7][5] = 5;
+addressing_mode[7][6] = 5;
 addressing_mode[7][7] = 0;
-addressing_mode[7][8] = 1;
-addressing_mode[7][9] = 3;
+addressing_mode[7][8] = 7;
+addressing_mode[7][9] = 13;
 addressing_mode[7][10] = 0;
 addressing_mode[7][11] = 0;
 addressing_mode[7][12] = 0;
-addressing_mode[7][13] = 3;
-addressing_mode[7][14] = 3;
+addressing_mode[7][13] = 6;
+addressing_mode[7][14] = 6;
 
 //row:8
 addressing_mode[8][0] = 0;
-addressing_mode[8][1] = 2;
+addressing_mode[8][1] = 9;
 addressing_mode[8][2] = 0;
 addressing_mode[8][3] = 0;
-addressing_mode[8][4] = 2;
-addressing_mode[8][5] = 2;
-addressing_mode[8][6] = 2;
+addressing_mode[8][4] = 4;
+addressing_mode[8][5] = 4;
+addressing_mode[8][6] = 4;
 addressing_mode[8][7] = 0;
-addressing_mode[8][8] = 1;
+addressing_mode[8][8] = 7;
 addressing_mode[8][9] = 0;
-addressing_mode[8][10] = 1;
+addressing_mode[8][10] = 2;
 addressing_mode[8][11] = 0;
 addressing_mode[8][12] = 3;
 addressing_mode[8][13] = 3;
 addressing_mode[8][14] = 3;
 
 //row:9
-addressing_mode[9][0] = 2;
-addressing_mode[9][1] = 2;
+addressing_mode[9][0] = 8;
+addressing_mode[9][1] = 10;
 addressing_mode[9][2] = 0;
 addressing_mode[9][3] = 0;
-addressing_mode[9][4] = 2;
-addressing_mode[9][5] = 2;
-addressing_mode[9][6] = 2;
+addressing_mode[9][4] = 5;
+addressing_mode[9][5] = 5;
+addressing_mode[9][6] = 12;
 addressing_mode[9][7] = 0;
-addressing_mode[9][8] = 1;
-addressing_mode[9][9] = 3;
-addressing_mode[9][10] = 1;
+addressing_mode[9][8] = 7;
+addressing_mode[9][9] = 13;
+addressing_mode[9][10] = 2;
 addressing_mode[9][11] = 0;
 addressing_mode[9][12] = 0;
-addressing_mode[9][13] = 3;
+addressing_mode[9][13] = 6;
 addressing_mode[9][14] = 0;
 
 //row:10
 addressing_mode[10][0] = 2;
-addressing_mode[10][1] = 2;
+addressing_mode[10][1] = 9;
 addressing_mode[10][2] = 2;
 addressing_mode[10][3] = 0;
-addressing_mode[10][4] = 2;
-addressing_mode[10][5] = 2;
-addressing_mode[10][6] = 2;
+addressing_mode[10][4] = 4;
+addressing_mode[10][5] = 4;
+addressing_mode[10][6] = 4;
 addressing_mode[10][7] = 0;
-addressing_mode[10][8] = 1;
+addressing_mode[10][8] = 7;
 addressing_mode[10][9] = 2;
-addressing_mode[10][10] = 1;
+addressing_mode[10][10] = 2;
 addressing_mode[10][11] = 0;
 addressing_mode[10][12] = 3;
 addressing_mode[10][13] = 3;
 addressing_mode[10][14] = 3;
 
 //row:11
-addressing_mode[11][0] = 2;
-addressing_mode[11][1] = 2;
+addressing_mode[11][0] = 8;
+addressing_mode[11][1] = 10;
 addressing_mode[11][2] = 0;
 addressing_mode[11][3] = 0;
-addressing_mode[11][4] = 2;
-addressing_mode[11][5] = 2;
-addressing_mode[11][6] = 2;
+addressing_mode[11][4] = 5;
+addressing_mode[11][5] = 5;
+addressing_mode[11][6] = 12;
 addressing_mode[11][7] = 0;
-addressing_mode[11][8] = 1;
-addressing_mode[11][9] = 3;
-addressing_mode[11][10] = 1;
+addressing_mode[11][8] = 7;
+addressing_mode[11][9] = 13;
+addressing_mode[11][10] = 2;
 addressing_mode[11][11] = 0;
-addressing_mode[11][12] = 3;
-addressing_mode[11][13] = 3;
-addressing_mode[11][14] = 3;
+addressing_mode[11][12] = 6;
+addressing_mode[11][13] = 6;
+addressing_mode[11][14] = 13;
 
 //row:12
 addressing_mode[12][0] = 2;
-addressing_mode[12][1] = 2;
+addressing_mode[12][1] = 9;
 addressing_mode[12][2] = 0;
 addressing_mode[12][3] = 0;
-addressing_mode[12][4] = 2;
-addressing_mode[12][5] = 2;
-addressing_mode[12][6] = 2;
+addressing_mode[12][4] = 4;
+addressing_mode[12][5] = 4;
+addressing_mode[12][6] = 4;
 addressing_mode[12][7] = 0;
-addressing_mode[12][8] = 1;
+addressing_mode[12][8] = 7;
 addressing_mode[12][9] = 2;
-addressing_mode[12][10] = 1;
+addressing_mode[12][10] = 2;
 addressing_mode[12][11] = 0;
 addressing_mode[12][12] = 3;
 addressing_mode[12][13] = 3;
 addressing_mode[12][14] = 3;
 
 //row:13
-addressing_mode[13][0] = 2;
-addressing_mode[13][1] = 2;
+addressing_mode[13][0] = 8;
+addressing_mode[13][1] = 10;
 addressing_mode[13][2] = 0;
 addressing_mode[13][3] = 0;
 addressing_mode[13][4] = 0;
-addressing_mode[13][5] = 2;
-addressing_mode[13][6] = 2;
+addressing_mode[13][5] = 5;
+addressing_mode[13][6] = 5;
 addressing_mode[13][7] = 0;
-addressing_mode[13][8] = 1;
-addressing_mode[13][9] = 3;
+addressing_mode[13][8] = 7;
+addressing_mode[13][9] = 13;
 addressing_mode[13][10] = 0;
 addressing_mode[13][11] = 0;
 addressing_mode[13][12] = 0;
-addressing_mode[13][13] = 3;
-addressing_mode[13][14] = 3;
+addressing_mode[13][13] = 6;
+addressing_mode[13][14] = 6;
 
 //row:14
 addressing_mode[14][0] = 2;
-addressing_mode[14][1] = 2;
+addressing_mode[14][1] = 9;
 addressing_mode[14][2] = 0;
 addressing_mode[14][3] = 0;
-addressing_mode[14][4] = 2;
-addressing_mode[14][5] = 2;
-addressing_mode[14][6] = 2;
+addressing_mode[14][4] = 4;
+addressing_mode[14][5] = 4;
+addressing_mode[14][6] = 4;
 addressing_mode[14][7] = 0;
-addressing_mode[14][8] = 1;
+addressing_mode[14][8] = 7;
 addressing_mode[14][9] = 2;
-addressing_mode[14][10] = 1;
+addressing_mode[14][10] = 2;
 addressing_mode[14][11] = 0;
 addressing_mode[14][12] = 3;
 addressing_mode[14][13] = 3;
 addressing_mode[14][14] = 3;
 
 //row:15
-addressing_mode[15][0] = 2;
-addressing_mode[15][1] = 2;
+addressing_mode[15][0] = 8;
+addressing_mode[15][1] = 10;
 addressing_mode[15][2] = 0;
 addressing_mode[15][3] = 0;
 addressing_mode[15][4] = 0;
-addressing_mode[15][5] = 2;
-addressing_mode[15][6] = 2;
+addressing_mode[15][5] = 5;
+addressing_mode[15][6] = 5;
 addressing_mode[15][7] = 0;
-addressing_mode[15][8] = 1;
-addressing_mode[15][9] = 3;
+addressing_mode[15][8] = 7;
+addressing_mode[15][9] = 13;
 addressing_mode[15][10] = 0;
 addressing_mode[15][11] = 0;
 addressing_mode[15][12] = 0;
-addressing_mode[15][13] = 3;
-addressing_mode[15][14] = 3;
+addressing_mode[15][13] = 6;
+addressing_mode[15][14] = 6;
 end
 
 
