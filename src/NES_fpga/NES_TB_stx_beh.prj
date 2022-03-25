@@ -1,0 +1,4 @@
+verilog isim_temp "RAM_64K.v"
+verilog isim_temp "cpu_6502.v"
+verilog isim_temp "NES_TB.v"
+verilog isim_temp "D:/ise/14.7/ISE_DS/ISE//verilog/src/glbl.v"

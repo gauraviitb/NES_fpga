@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/RAM_64K_isim_beh.exe" -prj "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/RAM_64K_beh.prj" "work.RAM_64K" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -lib "secureip" -o "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB_isim_beh.exe" -prj "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB_beh.prj" "work.NES_TB" "work.glbl" 

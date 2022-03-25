@@ -1,2 +1,4 @@
 verilog work "RAM_64K.v"
+verilog work "cpu_6502.v"
+verilog work "NES_TB.v"
 verilog work "D:/ise/14.7/ISE_DS/ISE//verilog/src/glbl.v"

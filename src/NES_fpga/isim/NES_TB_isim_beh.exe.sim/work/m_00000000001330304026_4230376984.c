@@ -942,6 +942,6 @@ LAB36:    memcpy(t3, t106, 8);
 extern void work_m_00000000001330304026_4230376984_init()
 {
 	static char *pe[] = {(void *)Always_32_0,(void *)Cont_39_1};
-	xsi_register_didat("work_m_00000000001330304026_4230376984", "isim/RAM_64K_isim_beh.exe.sim/work/m_00000000001330304026_4230376984.didat");
+	xsi_register_didat("work_m_00000000001330304026_4230376984", "isim/NES_TB_isim_beh.exe.sim/work/m_00000000001330304026_4230376984.didat");
 	xsi_register_executes(pe);
 }
