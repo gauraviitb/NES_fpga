@@ -31,56 +31,55 @@
     <file xil_pn:fileType="FILE_LOG" xil_pn:name="fuse.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
-    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1648184493" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1648184493">
+    <transform xil_pn:end_ts="1648193626" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1648193626">
       <status xil_pn:value="SuccessfullyRun"/>
     </transform>
-    <transform xil_pn:end_ts="1648184519" xil_pn:in_ck="-4222171377694097041" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1648184519">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="NES_TB.v"/>
-      <outfile xil_pn:name="RAM_64K.v"/>
-      <outfile xil_pn:name="cpu_6502.v"/>
-    </transform>
-    <transform xil_pn:end_ts="1648184493" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="1103437345389542866" xil_pn:start_ts="1648184493">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1648184493" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="2450537218870573456" xil_pn:start_ts="1648184493">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1648184493" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="3557109430653699889" xil_pn:start_ts="1648184493">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
-    </transform>
-    <transform xil_pn:end_ts="1648184519" xil_pn:in_ck="-4222171377694097041" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1648184519">
+    <transform xil_pn:end_ts="1648193626" xil_pn:in_ck="2954527099988246410" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1648193626">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="NES_TB.v"/>
       <outfile xil_pn:name="RAM_64K.v"/>
       <outfile xil_pn:name="cpu_6502.v"/>
+      <outfile xil_pn:name="decode_stage.v"/>
     </transform>
-    <transform xil_pn:end_ts="1648184523" xil_pn:in_ck="-4222171377694097041" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-6280643822121092669" xil_pn:start_ts="1648184519">
+    <transform xil_pn:end_ts="1648193626" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="1103437345389542866" xil_pn:start_ts="1648193626">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1648193626" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="2450537218870573456" xil_pn:start_ts="1648193626">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1648193626" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="3557109430653699889" xil_pn:start_ts="1648193626">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1648193626" xil_pn:in_ck="2954527099988246410" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1648193626">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="NES_TB.v"/>
+      <outfile xil_pn:name="RAM_64K.v"/>
+      <outfile xil_pn:name="cpu_6502.v"/>
+      <outfile xil_pn:name="decode_stage.v"/>
+    </transform>
+    <transform xil_pn:end_ts="1648193631" xil_pn:in_ck="2954527099988246410" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-6280643822121092669" xil_pn:start_ts="1648193626">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="NES_TB_beh.prj"/>
       <outfile xil_pn:name="NES_TB_isim_beh.exe"/>
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1648184523" xil_pn:in_ck="5991323711249225261" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-3760068027165942554" xil_pn:start_ts="1648184523">
+    <transform xil_pn:end_ts="1648193631" xil_pn:in_ck="5991323711249225261" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-3760068027165942554" xil_pn:start_ts="1648193631">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="NES_TB_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="isim.log"/>
     </transform>
   </transforms>
 
