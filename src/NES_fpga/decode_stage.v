@@ -22,7 +22,7 @@ module decode_stage(
     input clk,
     input rst_n,
     input [23:0] f_to_d_reg,
-    output [23:0] d_to_e_reg
+    output reg [37:0] d_to_e_reg
     );
 reg [1:0] instt_size [15:0][14:0];
 reg [3:0] addressing_mode [15:0][14:0];
@@ -594,5 +594,40 @@ addressing_mode[15][13] = 6;
 addressing_mode[15][14] = 6;
 end
 
+reg opcode_fetch = 1;
+reg [1:0] count = 0;
+
+always@(f_to_d_reg) begin
+	if(rst_n == 0 || f_to_d_reg[7:0] === 8'hzz) begin
+		count = 0;
+		opcode_fetch = 1;
+	end
+	else begin
+		if(opcode_fetch == 1) begin
+			count = instt_size[(16'hf0 & f_to_d_reg[7:0])>>4][16'h0f & f_to_d_reg[7:0]];
+			d_to_e_reg[31:15] = f_to_d_reg[23:8]; // PC
+			d_to_e_reg[34:31] = addressing_mode[(16'hf0 & f_to_d_reg[7:0])>>4][16'h0f & f_to_d_reg[7:0]]; // Addressing mode
+			d_to_e_reg[36:35] = count; //instt size
+			d_to_e_reg[37] = 0; //valid bit
+			opcode_fetch = 0;
+		end
+		else if (count == 1 && d_to_e_reg[36:35] == 2)begin
+			d_to_e_reg[7:0] = f_to_d_reg[7:0]; // LSB
+		end
+		else if (count == 2 && d_to_e_reg[36:35] == 3)begin
+			d_to_e_reg[7:0] = f_to_d_reg[7:0]; // LSB
+		end
+		else if (count == 1 && d_to_e_reg[36:35] == 3)begin
+			d_to_e_reg[15:8] = f_to_d_reg[7:0]; // MSB
+		end
+
+		
+		count = count - 1;
+		if(count == 0) begin
+			opcode_fetch = 1;
+			d_to_e_reg[37] = 1; //valid bit
+		end
+		end
+end
 
 endmodule

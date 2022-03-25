@@ -49,13 +49,15 @@ always @(posedge clk) begin
 		A = 0;
 		X = 0;
 		Y = 0;
+		f_to_d_reg = 0;
+		rw_n = 1;
 	end
 	else begin
 		if(jump_branch_instt == 0)
 			PC = PC + 1;
 		else 
 			PC = jump_address;
-	end
+	
 	
 	if(memory_access == 1)
 		addr = load_store_addr;
@@ -63,7 +65,7 @@ always @(posedge clk) begin
 		addr = PC;
 	
 	rw_n = load_store_n;
-	
+	end
 end
 
 always @(posedge clk) begin
@@ -71,9 +73,9 @@ always @(posedge clk) begin
 	f_to_d_reg[23:8] <= PC-2;
 end
 
-
+wire [37:0] d_to_e_reg;
 //Decode stage
 //determine instt size and addressing mode
-decode_stage u_decode(clk, rst_n, f_to_d_reg);
+decode_stage u_decode(clk, rst_n, f_to_d_reg, d_to_e_reg);
 
 endmodule

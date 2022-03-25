@@ -24,14 +24,14 @@ reg clk, cs_n, rst_n;
 wire [15:0] addr;
 wire [7:0] data;
 
-RAM_64K ram(clk, addr, data, rw_n, cs_n);
+RAM_64K ram(clk, rst_n, addr, data, rw_n, cs_n);
 cpu_6502 uprocessor(clk, rst_n, addr, data, rw_n);
 
 
 initial begin
 	cs_n = 0;
 	rst_n = 0;
-	#25;
+	#80;
 	rst_n = 1;
 end
 

@@ -9,7 +9,6 @@ Analyzing Verilog file "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_650
 Analyzing Verilog file "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB.v" into library work
 Analyzing Verilog file "D:/ise/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:1016 - "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 77: Port d_to_e_reg is not connected to this instance
 Completed static elaboration
 Compiling module RAM_64K
 Compiling module decode_stage
@@ -17,8 +16,7 @@ Compiling module cpu_6502
 Compiling module NES_TB
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
 Compiled 5 Verilog Units
 Built simulation executable C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB_isim_beh.exe
-Fuse Memory Usage: 31388 KB
-Fuse CPU Usage: 749 ms
+Fuse Memory Usage: 31604 KB
+Fuse CPU Usage: 812 ms

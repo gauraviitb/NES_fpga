@@ -168,9 +168,9 @@ LAB14:    goto LAB1;
 }
 
 
-extern void work_m_00000000004072656105_2336566805_init()
+extern void work_m_00000000004072657194_2336566805_init()
 {
 	static char *pe[] = {(void *)Initial_31_0,(void *)Initial_38_1};
-	xsi_register_didat("work_m_00000000004072656105_2336566805", "isim/NES_TB_isim_beh.exe.sim/work/m_00000000004072656105_2336566805.didat");
+	xsi_register_didat("work_m_00000000004072657194_2336566805", "isim/NES_TB_isim_beh.exe.sim/work/m_00000000004072657194_2336566805.didat");
 	xsi_register_executes(pe);
 }
