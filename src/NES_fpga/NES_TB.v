@@ -20,18 +20,20 @@
 //////////////////////////////////////////////////////////////////////////////////
 module NES_TB(
     );
-reg clk, addr, rw_n, cs_n;
+reg clk, cs_n;
+wire [15:0] addr;
+wire [7:0] data;
 
 RAM_64K ram(clk, addr, data, rw_n, cs_n);
-cpu_6502 uprocessor(clk, rst_n, addr, data);
+cpu_6502 uprocessor(clk, rst_n, addr, data, rw_n);
 
 
 initial begin
-	addr = 0;
-	rw_n = 0;
 	cs_n = 0;
+	rst_n = 0;
+	#25;
+	rst_n = 1;
 end
-
 
 initial begin
 	clk = 0;
