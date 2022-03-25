@@ -35,7 +35,7 @@ always @(posedge clk) begin
 	else if (cs_n == 0 && rw_n == 1)
 		temp_data <= memory[addr];
 end
-
+//hello gaurav
 assign data = (cs_n == 0 && rw_n == 1) ? temp_data : 'hz; 
 
 endmodule
