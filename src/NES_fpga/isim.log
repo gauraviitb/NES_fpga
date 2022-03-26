@@ -2,6 +2,9 @@ ISim log file
 Running: C:\Users\Rathi\Desktop\git\NES_fpga\src\NES_fpga\NES_TB_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB_isim_beh.wdb 
 ISim P.20131013 (signature 0x7708f090)
 This is a Full version of ISim.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 78.  For instance uprocessor/u_execute/, width 8 of formal port A is not equal to width 39 of actual signal d_to_e_reg.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 8 of formal port X is not equal to width 1 of actual signal halt_f_to_d.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 81.  For instance uprocessor/u_execute/, width 8 of formal port Y is not equal to width 1 of actual signal halt_d_to_e.
 Time resolution is 1 ps
 # onerror resume
 # wave add /
@@ -10,6 +13,51 @@ Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 ISim P.20131013 (signature 0x7708f090)
 This is a Full version of ISim.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 78.  For instance uprocessor/u_execute/, width 8 of formal port A is not equal to width 39 of actual signal d_to_e_reg.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 8 of formal port X is not equal to width 1 of actual signal halt_f_to_d.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 81.  For instance uprocessor/u_execute/, width 8 of formal port Y is not equal to width 1 of actual signal halt_d_to_e.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+ISim P.20131013 (signature 0x7708f090)
+This is a Full version of ISim.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 78.  For instance uprocessor/u_execute/, width 8 of formal port A is not equal to width 39 of actual signal d_to_e_reg.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 8 of formal port X is not equal to width 1 of actual signal halt_f_to_d.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 81.  For instance uprocessor/u_execute/, width 8 of formal port Y is not equal to width 1 of actual signal halt_d_to_e.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+ISim P.20131013 (signature 0x7708f090)
+This is a Full version of ISim.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 8 of formal port mem_data_in is not equal to width 1 of actual signal mem_data_in.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 16 of formal port addr_bus is not equal to width 1 of actual signal addr_bus.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 8 of formal port mem_data_out is not equal to width 1 of actual signal mem_data_out.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 3 of formal port reg_addr is not equal to width 1 of actual signal reg_addr.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 84.  For instance uprocessor/u_execute/, width 8 of formal port reg_data is not equal to width 1 of actual signal reg_data.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+ISim P.20131013 (signature 0x7708f090)
+This is a Full version of ISim.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 85.  For instance uprocessor/u_execute/, width 8 of formal port mem_data_out is not equal to width 1 of actual signal mem_data_out.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 85.  For instance uprocessor/u_execute/, width 3 of formal port reg_addr is not equal to width 1 of actual signal reg_addr.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 85.  For instance uprocessor/u_execute/, width 8 of formal port reg_data is not equal to width 1 of actual signal reg_data.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+ISim P.20131013 (signature 0x7708f090)
+This is a Full version of ISim.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 85.  For instance uprocessor/u_execute/, width 8 of formal port mem_data_out is not equal to width 1 of actual signal mem_data_out.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 85.  For instance uprocessor/u_execute/, width 3 of formal port reg_addr is not equal to width 1 of actual signal reg_addr.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 85.  For instance uprocessor/u_execute/, width 8 of formal port reg_data is not equal to width 1 of actual signal reg_data.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+ISim P.20131013 (signature 0x7708f090)
+This is a Full version of ISim.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 72.  For instance uprocessor/u_execute/, width 8 of formal port mem_data_out is not equal to width 1 of actual signal mem_data_out.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 72.  For instance uprocessor/u_execute/, width 3 of formal port reg_addr is not equal to width 1 of actual signal reg_addr.
+WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/cpu_6502.v" Line 72.  For instance uprocessor/u_execute/, width 8 of formal port reg_data is not equal to width 1 of actual signal reg_data.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
@@ -35,69 +83,7 @@ Simulator is doing circuit initialization process.
 Finished circuit initialization process.
 ISim P.20131013 (signature 0x7708f090)
 This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
-WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB.v" Line 24.  For instance NES_TB/ram/, width 1 of formal port rst_n is not equal to width 16 of actual signal addr.
-WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB.v" Line 25.  For instance NES_TB/ram/, width 16 of formal port addr is not equal to width 8 of actual signal data.
-WARNING: File "C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB.v" Line 27.  For instance NES_TB/ram/, width 8 of formal port data is not equal to width 1 of actual signal rw_n.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-ISim P.20131013 (signature 0x7708f090)
-This is a Full version of ISim.
+WARNING:  For instance uprocessor/u_execute/, width 1 of formal port clk is not equal to width 32 of actual constant.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.

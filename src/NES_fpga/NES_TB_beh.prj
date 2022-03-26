@@ -1,3 +1,4 @@
+verilog work "execute_stage.v"
 verilog work "decode_stage.v"
 verilog work "RAM_64K.v"
 verilog work "cpu_6502.v"

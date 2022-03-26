@@ -2,27 +2,9 @@ Command line:
    NES_TB_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  58018
+     -socket  60417
 
-Fri Mar 25 15:51:57 2022
+Sat Mar 26 10:33:28 2022
 
 
  Elaboration Time: 0.046875 sec
-
- Current Memory Usage: 5149.83 Meg
-
- Total Signals          : 31
- Total Nets             : 122
- Total Signal Drivers   : 16
- Total Blocks           : 5
- Total Primitive Blocks : 3
- Total Processes        : 26
- Total Traceable Variables  : 38
- Total Scalar Nets and Variables : 526081
-
- Total Simulation Time: 0.0625 sec
-
- Current Memory Usage: 5464.4 Meg
-
-Fri Mar 25 15:52:46 2022
-

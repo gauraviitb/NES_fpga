@@ -38,14 +38,18 @@ initial begin
 	memory[4] = 16'h20;
 	memory[5] = 5;
 	memory[6] = 6;
-	memory[7] = 7;
+	memory[7] = 16'h01;
 	memory[8] = 8;
-	memory[9] = 9;
+	memory[9] = 16'h09;
 	memory[10] = 10;
 	memory[11] = 11;
 	memory[12] = 12;
 	memory[13] = 13;
 	memory[14] = 14;
+	
+	
+	
+	memory[2312] = 14;
 end
 
 always @(posedge clk) begin
