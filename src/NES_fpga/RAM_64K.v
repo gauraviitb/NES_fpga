@@ -31,6 +31,7 @@ reg [7:0] memory[65535:0];
 reg [7:0] temp_data;
 
 initial begin
+	//Code section
 	memory[0] = 16'h10;
 	memory[1] = 2;
 	memory[2] = 16'h10;
@@ -39,17 +40,20 @@ initial begin
 	memory[5] = 5;
 	memory[6] = 6;
 	memory[7] = 16'h01;
-	memory[8] = 8;
-	memory[9] = 16'h09;
-	memory[10] = 10;
-	memory[11] = 11;
-	memory[12] = 12;
-	memory[13] = 13;
-	memory[14] = 14;
+	memory[8] = 26;
+	memory[9] = 16'h20;
+	memory[10] = 5;
+	memory[11] = 6;
+	memory[12] = 10;
+	memory[13] = 11;
+	memory[14] = 12;
+	memory[15] = 13;
+	memory[16] = 14;
 	
-	
-	
-	memory[2312] = 14;
+	memory[26] = 26;
+	memory[27] = 27;
+	//Data section
+	memory[6938] = 14;
 end
 
 always @(posedge clk) begin

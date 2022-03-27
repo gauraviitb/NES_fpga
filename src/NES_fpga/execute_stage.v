@@ -123,7 +123,7 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 //d_to_e_reg[37:36] Instt size
 //d_to_e_reg[38] valid bit
 	clk_counter = clk_counter + 1;
-	
+	execute_instt = 0;
 	case (d_to_e_reg[35:32])
 	1: //Accumulator mode 
 	begin
@@ -255,11 +255,22 @@ end
 //Execute instt
 always @(posedge execute_instt) begin
 	case (d_to_e_reg[44:39]) //instt type
-	1: begin //ORA
+	1: begin //ADC
+		end
+	2: begin //AND
+		end
+	3: begin //ASL
+		end
+	4: begin //BCC
+		end
+	5: begin //BCS
+		end
+	6: begin //BEQ
+		end
+	35: begin //ORA
 			reg_data = A | temp_A;
 			reg_addr = 0;
 			reg_write = 1;
-			execute_instt = 0;
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			clk_count = 0;

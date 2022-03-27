@@ -68,7 +68,7 @@ end
 
 
 //Decode stage
-//determine instt size and addressing mode
+//determine instt size, addressing mode, Instt type
 decode_stage u_decode(clk, rst_n, f_to_d_reg, halt_d_to_e, d_to_e_reg);
 
 //Execute stage
