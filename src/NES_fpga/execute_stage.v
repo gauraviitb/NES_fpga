@@ -51,6 +51,7 @@ initial begin
 	reg_write = 0;
 end
 
+//posedge of valid bit
 always@(posedge d_to_e_reg[38]) begin
 //d_to_e_reg[7:0] LSB
 //d_to_e_reg[15:8] MSB
@@ -84,7 +85,8 @@ begin
 end
 8: //Relative mode
 begin
-	pc_temp = d_to_e_reg[7:0] + d_to_e_reg[31:16] + d_to_e_reg[36:35];
+	pc_temp = d_to_e_reg[7:0] + d_to_e_reg[31:16] + d_to_e_reg[37:36]; // 2nd byte + PC + instt size
+	execute_instt = 1;
 end
 9: //IND, x
 begin
@@ -115,6 +117,8 @@ end
 
 //multi-cycle for addressing mode
 always@(posedge clk) begin
+reg_write = 0;
+execute_instt = 0;
 if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 //d_to_e_reg[7:0] LSB
 //d_to_e_reg[15:8] MSB
@@ -189,7 +193,7 @@ end
 end
 
 
-//Needed to read mem data in next cycle
+//Needed to read mem data in next cycle, for load and store
 always@(mem_data_in) begin
 if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 
@@ -267,6 +271,11 @@ always @(posedge execute_instt) begin
 		end
 	6: begin //BEQ
 		end
+	10: begin //BPL
+			reg_addr = 3; //PC
+			reg_write = 1;
+			reg_data = pc_temp;
+		 end
 	35: begin //ORA
 			reg_data = A | temp_A;
 			reg_addr = 0;

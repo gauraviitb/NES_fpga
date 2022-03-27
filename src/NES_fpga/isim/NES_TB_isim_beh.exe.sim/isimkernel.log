@@ -2,9 +2,9 @@ Command line:
    NES_TB_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  61324
+     -socket  61370
 
-Sun Mar 27 11:01:05 2022
+Sun Mar 27 11:33:56 2022
 
 
  Elaboration Time: 0.046875 sec

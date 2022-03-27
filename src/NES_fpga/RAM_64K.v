@@ -33,7 +33,7 @@ reg [7:0] temp_data;
 initial begin
 	//Code section
 	memory[0] = 16'h10;
-	memory[1] = 2;
+	memory[1] = 7;
 	memory[2] = 16'h10;
 	memory[3] = 3;
 	memory[4] = 16'h20;

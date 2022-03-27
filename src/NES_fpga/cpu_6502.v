@@ -27,7 +27,7 @@ module cpu_6502(
     );
 
 reg [15:0] PC = 0;
-reg [7:0] A, X, Y, PSW;
+reg [7:0] A, X, Y, PSW, SP;
 
 //pipeline register
 reg [23:0] f_to_d_reg;
@@ -66,6 +66,28 @@ always @(posedge clk) begin
 	end
 end
 
+always @(posedge reg_write) begin
+	case (reg_addr)
+	0: begin 
+			A = reg_data;
+		end
+	1: begin 
+			X = reg_data;
+		end
+	2: begin
+			Y = reg_data;
+		end
+	3: begin
+			PC = reg_data;
+		end
+	4: begin
+			PSW = reg_data;		
+		end
+	5: begin
+			SP = reg_data;
+		end
+	endcase
+end
 
 //Decode stage
 //determine instt size, addressing mode, Instt type
