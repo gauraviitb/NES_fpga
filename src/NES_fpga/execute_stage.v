@@ -285,31 +285,112 @@ always @(posedge execute_instt) begin
 	case (d_to_e_reg[44:39]) //instt type
 	1: begin //ADC
 		end
+		
 	2: begin //AND
 		end
-	3: begin //ASL
+		
+	3: begin	//ASL
 		end
+		
 	4: begin //BCC
-		end
+			if(PSW[0] == 1) //carry set
+				begin 
+				end
+			else 
+				begin //carry clear
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
+		 end
+		 
 	5: begin //BCS
-		end
+			if(PSW[0] == 0) //carry clear
+				begin 
+				end
+			else 
+				begin //carry set
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
+		 end
+		 
 	6: begin //BEQ
 		end
-	10: begin //BPL
-	if(PSW[7] == 1) //negative
-		begin 
-		end
-	else 
-		begin //positive result
-				reg_addr = 3; //PC
-				reg_write = 1;
-				reg_data = pc_temp;
-				halt_d_to_e = 1;
-				flush_f_to_d = 1;
-				clk_count = 3;
-				clk_counter = 1;
-		end
+		
+	8: begin //BMI
+			if(PSW[7] == 0) //positive
+				begin 
+				end
+			else 
+				begin //negative result
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
 		 end
+
+	10: begin //BPL
+			if(PSW[7] == 1) //negative
+				begin 
+				end
+			else 
+				begin //positive result
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
+		 end
+		 
+	12: begin //BVC
+			if(PSW[6] == 1) //overflow set
+				begin 
+				end
+			else 
+				begin //overflow clear
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
+		end
+		
+	13: begin //BVS
+			if(PSW[6] == 0) //overflow clear
+				begin 
+				end
+			else 
+				begin //overflow set
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
+		 end
+
 	29: begin //JSR
 				reg_addr = 3; //PC
 				reg_write = 1;
@@ -319,6 +400,7 @@ always @(posedge execute_instt) begin
 				clk_count = 3;
 				clk_counter = 1;
 		 end
+		 
 	35: begin //ORA
 			reg_data = A | temp_A;
 			reg_addr = 0;
