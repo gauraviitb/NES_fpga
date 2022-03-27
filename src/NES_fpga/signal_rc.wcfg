@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/NES_TB_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="NES_TB" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="48" />
+   <wvobject fp_name="/NES_TB/addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data[7:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/rw_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rw_n</obj_property>
+      <obj_property name="ObjectShortName">rw_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/cs_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cs_n</obj_property>
+      <obj_property name="ObjectShortName">cs_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/rst_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/jump_branch_instt" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">jump_branch_instt</obj_property>
+      <obj_property name="ObjectShortName">jump_branch_instt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/jump_address" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">jump_address[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jump_address[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/PC" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">PC[15:0]</obj_property>
+      <obj_property name="ObjectShortName">PC[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/A" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">A[7:0]</obj_property>
+      <obj_property name="ObjectShortName">A[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/X" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">X[7:0]</obj_property>
+      <obj_property name="ObjectShortName">X[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/Y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">Y[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Y[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/PSW" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">PSW[7:0]</obj_property>
+      <obj_property name="ObjectShortName">PSW[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/SP" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">SP[7:0]</obj_property>
+      <obj_property name="ObjectShortName">SP[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider16" type="divider">
+      <obj_property name="label">DECODE</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg" type="array" db_ref_id="1">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">f_to_d_reg[23:0]</obj_property>
+      <obj_property name="ObjectShortName">f_to_d_reg[23:0]</obj_property>
+      <obj_property name="label">f_to_d_reg[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="vbus174" type="vbus" db_ref_id="1">
+      <obj_property name="label">PC</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[23]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[23]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[22]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[22]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[21]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[21]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[20]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[20]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[19]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[19]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[18]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[18]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[17]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[17]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[16]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[16]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[15]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[15]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[14]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[14]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[13]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[13]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[12]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[12]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[11]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[11]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[10]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[10]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[9]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[9]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[8]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[8]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="vbus157" type="vbus" db_ref_id="1">
+      <obj_property name="label">byte opcode or data</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[7]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[7]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[6]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[6]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[5]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[5]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[4]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[4]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[3]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[2]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[2]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[1]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/f_to_d_reg[0]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">f_to_d_reg[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_decode/opcode_fetch" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">opcode_fetch</obj_property>
+      <obj_property name="ObjectShortName">opcode_fetch</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_decode/count" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">count[1:0]</obj_property>
+      <obj_property name="ObjectShortName">count[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider26" type="divider">
+      <obj_property name="label">EXECUTE</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg" type="array" db_ref_id="1">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">d_to_e_reg[44:0]</obj_property>
+      <obj_property name="ObjectShortName">d_to_e_reg[44:0]</obj_property>
+      <obj_property name="label">d_to_e_reg[44:0]</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[44]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[44]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[44]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[43]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[43]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[43]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[42]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[42]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[42]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[41]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[41]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[41]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[40]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[40]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[40]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[39]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[39]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[39]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[38]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[38]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[38]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[37]" type="logic" db_ref_id="1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[37]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[37]</obj_property>
+         <obj_property name="label">[37]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[36]" type="logic" db_ref_id="1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[36]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[36]</obj_property>
+         <obj_property name="label">[37]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[35]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[35]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[35]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[34]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[34]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[34]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[33]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[33]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[33]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[32]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[32]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[32]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[31]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[31]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[31]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[30]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[30]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[30]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[29]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[29]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[29]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[28]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[28]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[28]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[27]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[27]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[27]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[26]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[26]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[26]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[25]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[25]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[25]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[24]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[24]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[24]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[23]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[23]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[22]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[22]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[21]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[21]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[20]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[20]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[19]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[19]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[18]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[18]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[17]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[17]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[16]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[16]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[15]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[15]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[14]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[14]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[13]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[13]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[12]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[12]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[11]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[11]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[10]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[10]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[9]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[9]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[8]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[8]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[7]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[7]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[6]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[6]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[5]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[5]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[4]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[4]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[3]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[2]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[2]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[1]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[0]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[38]" type="logic" db_ref_id="1">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">[38]</obj_property>
+      <obj_property name="ObjectShortName">d_to_e_reg[38]</obj_property>
+      <obj_property name="label">valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="vbus118" type="vbus" db_ref_id="1">
+      <obj_property name="label">PC</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[31]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[31]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[31]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[30]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[30]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[30]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[29]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[29]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[29]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[28]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[28]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[28]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[27]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[27]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[27]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[26]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[26]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[26]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[25]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[25]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[25]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[24]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[24]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[24]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[23]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[23]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[23]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[22]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[22]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[22]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[21]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[21]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[21]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[20]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[20]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[20]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[19]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[19]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[19]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[18]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[18]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[18]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[17]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[17]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[17]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[16]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[16]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[16]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="vbus200" type="vbus" db_ref_id="1">
+      <obj_property name="label">instt type</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[44]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[44]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[44]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[43]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[43]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[43]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[42]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[42]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[42]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[41]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[41]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[41]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[40]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[40]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[40]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[39]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[39]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[39]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="vbus124" type="vbus" db_ref_id="1">
+      <obj_property name="label">instt size</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[37]" type="logic" db_ref_id="1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[37]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[37]</obj_property>
+         <obj_property name="label">[37]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[36]" type="logic" db_ref_id="1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">[36]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[36]</obj_property>
+         <obj_property name="label">[37]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="vbus205" type="vbus" db_ref_id="1">
+      <obj_property name="label">addr mode</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[35]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[35]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[35]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[34]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[34]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[34]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[33]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[33]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[33]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[32]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[32]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[32]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="vbus184" type="vbus" db_ref_id="1">
+      <obj_property name="label">MSB</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[15]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[15]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[14]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[14]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[13]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[13]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[12]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[12]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[11]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[11]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[10]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[10]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[9]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[9]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[8]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[8]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="vbus193" type="vbus" db_ref_id="1">
+      <obj_property name="label">LSB</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[7]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[7]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[6]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[6]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[5]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[5]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[4]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[4]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[3]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[2]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[2]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[1]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/NES_TB/uprocessor/u_decode/d_to_e_reg[0]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">d_to_e_reg[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/halt_f_to_d" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">halt_f_to_d</obj_property>
+      <obj_property name="ObjectShortName">halt_f_to_d</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/halt_d_to_e" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">halt_d_to_e</obj_property>
+      <obj_property name="ObjectShortName">halt_d_to_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/flush_f_to_d" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">flush_f_to_d</obj_property>
+      <obj_property name="ObjectShortName">flush_f_to_d</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/addr_bus" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">addr_bus[15:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_bus[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/rw_n" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rw_n</obj_property>
+      <obj_property name="ObjectShortName">rw_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/memory_access" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">memory_access</obj_property>
+      <obj_property name="ObjectShortName">memory_access</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/reg_addr" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_addr[2:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_addr[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/reg_write" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_write</obj_property>
+      <obj_property name="ObjectShortName">reg_write</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/reg_data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_data[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/pc_temp" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pc_temp[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_temp[15:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/ADL" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ADL[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ADL[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/ADH" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ADH[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ADH[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/temp_A" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">temp_A[7:0]</obj_property>
+      <obj_property name="ObjectShortName">temp_A[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/LSB" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">LSB[7:0]</obj_property>
+      <obj_property name="ObjectShortName">LSB[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/MSB" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">MSB[7:0]</obj_property>
+      <obj_property name="ObjectShortName">MSB[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/clk_count" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_count[5:0]</obj_property>
+      <obj_property name="ObjectShortName">clk_count[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/clk_counter" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_counter[5:0]</obj_property>
+      <obj_property name="ObjectShortName">clk_counter[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/execute_instt" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">execute_instt</obj_property>
+      <obj_property name="ObjectShortName">execute_instt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NES_TB/uprocessor/u_execute/mem_data_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mem_data_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_data_in[7:0]</obj_property>
+   </wvobject>
+</wave_config>

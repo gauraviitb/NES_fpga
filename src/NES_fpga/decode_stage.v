@@ -885,7 +885,9 @@ instt_type[15][13] = 44;
 instt_type[15][14] = 25;
 end
 
-
+initial begin
+	d_to_e_reg[38] = 0;
+end
 
 reg opcode_fetch = 1;
 reg [1:0] count = 0;

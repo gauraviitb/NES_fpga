@@ -44,16 +44,17 @@ initial begin
 	memory[9] = 16'h20;
 	memory[10] = 5;
 	memory[11] = 6;
+	
 	memory[12] = 10;
 	memory[13] = 11;
 	memory[14] = 12;
 	memory[15] = 13;
 	memory[16] = 14;
 	
-	memory[26] = 26;
-	memory[27] = 27;
 	//Data section
-	memory[6938] = 14;
+	memory[1541] = 16'h40;
+	memory[1542] = 16'h10;
+	memory[1543] = 2;
 end
 
 always @(posedge clk) begin

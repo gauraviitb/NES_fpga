@@ -5,16 +5,16 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 96: Concatenation with unsized literal; will interpret as 32 bits
+<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 99: Concatenation with unsized literal; will interpret as 32 bits
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 162: Concatenation with unsized literal; will interpret as 32 bits
+<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 166: Concatenation with unsized literal; will interpret as 32 bits
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 96: Concatenation with unsized literal; will interpret as 32 bits
+<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 99: Concatenation with unsized literal; will interpret as 32 bits
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 162: Concatenation with unsized literal; will interpret as 32 bits
+<msg type="warning" file="HDLCompiler" num="327" delta="unknown" >"C:/Users/Rathi/Desktop/git/NES_fpga/src/NES_fpga/execute_stage.v" Line 166: Concatenation with unsized literal; will interpret as 32 bits
 </msg>
 
 </messages>

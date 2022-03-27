@@ -35,7 +35,8 @@ module execute_stage(
 	 output reg memory_access,
 	 output reg [2:0] reg_addr,
 	 output reg reg_write,
-	 output reg [7:0] reg_data
+	 output reg [15:0] reg_data,
+	 output reg flush_f_to_d
     );
 
 reg [15:0] pc_temp;
@@ -46,6 +47,7 @@ reg execute_instt = 0;
 initial begin
 	halt_f_to_d = 0;
 	halt_d_to_e = 0;
+	flush_f_to_d = 0;
 	memory_access = 0;
 	rw_n = 0;
 	reg_write = 0;
@@ -69,7 +71,8 @@ begin
 end
 3: //Absolute mode
 begin
-	pc_temp = {d_to_e_reg[15:8] , d_to_e_reg[7:0]}; 
+	pc_temp = {d_to_e_reg[15:8] , d_to_e_reg[7:0]};
+	execute_instt = 1;
 end
 4: //ZP mode
 begin
@@ -119,6 +122,7 @@ end
 always@(posedge clk) begin
 reg_write = 0;
 execute_instt = 0;
+halt_f_to_d = 0;
 if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 //d_to_e_reg[7:0] LSB
 //d_to_e_reg[15:8] MSB
@@ -207,6 +211,16 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 	end
 	3: //Absolute mode
 	begin
+		if (clk_counter == 2)
+		 begin 
+				flush_f_to_d = 0;
+				//halt_d_to_e = 0;
+		 end
+		 else	if (clk_counter == 3)
+		 begin 
+				//flush_f_to_d = 0;
+				halt_d_to_e = 0;
+		 end
 	end
 	4: //ZP mode
 	begin
@@ -222,6 +236,16 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 	end
 	8: //Relative mode
 	begin
+		if (clk_counter == 2)
+		 begin 
+				flush_f_to_d = 0;
+				//halt_d_to_e = 0;
+		 end
+		 else	if (clk_counter == 3)
+		 begin 
+				//flush_f_to_d = 0;
+				halt_d_to_e = 0;
+		 end
 	end
 	9: //IND, x
 	begin
@@ -272,9 +296,28 @@ always @(posedge execute_instt) begin
 	6: begin //BEQ
 		end
 	10: begin //BPL
-			reg_addr = 3; //PC
-			reg_write = 1;
-			reg_data = pc_temp;
+	if(PSW[7] == 1) //negative
+		begin 
+		end
+	else 
+		begin //positive result
+				reg_addr = 3; //PC
+				reg_write = 1;
+				reg_data = pc_temp;
+				halt_d_to_e = 1;
+				flush_f_to_d = 1;
+				clk_count = 3;
+				clk_counter = 1;
+		end
+		 end
+	29: begin //JSR
+				reg_addr = 3; //PC
+				reg_write = 1;
+				reg_data = pc_temp;
+				halt_d_to_e = 1;
+				flush_f_to_d = 1;
+				clk_count = 3;
+				clk_counter = 1;
 		 end
 	35: begin //ORA
 			reg_data = A | temp_A;
