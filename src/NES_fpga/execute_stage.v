@@ -25,6 +25,7 @@ module execute_stage(
 	 input [7:0] X,
 	 input [7:0] Y,
 	 input [7:0] PSW,
+	 input [7:0] SP,
 	 input [7:0] mem_data_in,
     input [44:0] d_to_e_reg,
 	 output reg halt_f_to_d,
@@ -552,7 +553,7 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 					SP_write = 1;
 					SP_data = SP + 1;
 					memory_access = 1;
-					add_bus = {16'hff, SP + 1};
+					addr_bus = {16'hff, SP + 1};
 					rw_n = 1;
 				end
 				if(d_to_e_reg[44:39] == 43) //RTS
@@ -562,7 +563,7 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 					SP_write = 1;
 					SP_data = SP + 1;
 					memory_access = 1;
-					add_bus = {16'hff, SP + 1};
+					addr_bus = {16'hff, SP + 1};
 					rw_n = 1;
 				end
 			end
@@ -583,7 +584,7 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 				SP_data = SP + 1;
 				//PC_temp[7:0] = mem_data_in;
 				memory_access = 1;
-				add_bus = {16'hff, SP + 1};
+				addr_bus = {16'hff, SP + 1};
 				rw_n = 1;
 			end
 			if(d_to_e_reg[44:39] == 43) //RTS
@@ -989,7 +990,7 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 			
 			if(d_to_e_reg[44:39] == 43) //RTS
 			 begin
-				PC_temp[7:0] = mem_data_in; 
+				pc_temp[7:0] = mem_data_in; 
 			 end
 		 end
 		 
@@ -1006,13 +1007,13 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 			
 			if (d_to_e_reg[44:39] == 42) //RTI
 			 begin
-				PC_temp[7:0] = mem_data_in;
+				pc_temp[7:0] = mem_data_in;
 			 end
 			 
 			if(d_to_e_reg[44:39] == 43) //RTS
 			begin
-				PC_temp[15:8] = mem_data_in; 
-				PC_data = PC_temp;
+				pc_temp[15:8] = mem_data_in; 
+				PC_data = pc_temp;
 				halt_f_to_d = 0;
 				halt_d_to_e = 0;
 				clk_count = 0;
@@ -1025,8 +1026,8 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 		 begin
 			 if (d_to_e_reg[44:39] == 42) //RTI
 			 begin
-				PC_temp[15:8] = mem_data_in ;
-				PC_data = PC_temp;
+				pc_temp[15:8] = mem_data_in ;
+				PC_data = pc_temp;
 				halt_f_to_d = 0;
 				halt_d_to_e = 0;
 				clk_count = 0;

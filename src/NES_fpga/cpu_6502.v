@@ -35,11 +35,12 @@ reg [23:0] f_to_d_reg;
 //wire
 wire [15:0] jump_address;
 wire jump_branch_instt = 0;
-wire[15:0] load_store_addr;
+wire[15:0] load_store_addr, PC_data;
 wire [44:0] d_to_e_reg;
-wire [7:0] mem_data_out;
+wire [7:0] mem_data_out, A_data, X_data, Y_data, PSW_data, SP_data;
 wire [2:0] reg_addr;
 wire [15:0] reg_data;
+wire register_write;
 
 assign addr = (memory_access == 1) ? load_store_addr : PC;
 assign rw_n = (memory_access == 1) ? load_store_n : 1;
@@ -96,7 +97,6 @@ always @(posedge reg_write) begin
 	endcase
 end
 
-wire register_write;
 assign register_write = A_write || X_write || Y_write || PC_write || PSW_write || SP_write;
 
 always @(posedge register_write) begin
@@ -119,6 +119,6 @@ end
 decode_stage u_decode(clk, rst_n, f_to_d_reg, halt_d_to_e, d_to_e_reg);
 
 //Execute stage
-execute_stage u_execute(clk, rst_n, A, X, Y, PSW, data, d_to_e_reg, halt_f_to_d, halt_d_to_e, load_store_addr, mem_data_out, load_store_n, memory_access, reg_addr, reg_write, reg_data, flush_f_to_d, A_data, A_write, X_data, X_write, Y_data, Y_write, PC_data, PC_write, PSW_data, PSW_write, SP_data, SP_write);
+execute_stage u_execute(clk, rst_n, A, X, Y, PSW, SP, data, d_to_e_reg, halt_f_to_d, halt_d_to_e, load_store_addr, mem_data_out, load_store_n, memory_access, reg_addr, reg_write, reg_data, flush_f_to_d, A_data, A_write, X_data, X_write, Y_data, Y_write, PC_data, PC_write, PSW_data, PSW_write, SP_data, SP_write);
 
 endmodule
