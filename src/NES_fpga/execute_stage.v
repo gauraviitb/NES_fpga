@@ -44,6 +44,7 @@ reg [7:0] ADL, ADH, temp_A, LSB, MSB;
 reg [8:0] IND_Y;
 reg [5:0] clk_count = 0, clk_counter = 0;
 reg execute_instt = 0;
+reg extra_bit;
 
 initial begin
 	halt_f_to_d = 0;
@@ -69,7 +70,7 @@ begin
 end
 2: //Immediate mode
 begin
-	LSB = d_to_e_reg[7:0];
+	temp_A = d_to_e_reg[7:0];
 	execute_instt = 1;
 end
 3: //Absolute mode
@@ -84,9 +85,30 @@ begin
 			halt_f_to_d = 1;
 			halt_d_to_e = 1;
 			addr_bus = {d_to_e_reg[15:8],d_to_e_reg[7:0]};
+		if(d_to_e_reg[44:39] == 48) //STA
+		begin
+			rw_n = 0;
+			mem_data_out = A;
+		end
+		else if(d_to_e_reg[44:39] == 49) //STX
+		begin
+			rw_n = 0;
+			mem_data_out = X;
+		end
+		else if(d_to_e_reg[44:39] == 50) //STY
+		begin
+			rw_n = 0;
+			mem_data_out = Y;
+		end
+		else 
+		begin
 			rw_n = 1;
+		end
 			memory_access = 1;
-			clk_count = 2;
+			if(d_to_e_reg[44:39] == 21 || d_to_e_reg[44:39] == 25) //DEC || INC
+				clk_count = 3;
+			else
+				clk_count = 2;
 			clk_counter = 1;
 		end
 end
@@ -95,9 +117,30 @@ begin
 	halt_f_to_d = 1;
 	halt_d_to_e = 1;
 	addr_bus = {0 , d_to_e_reg[7:0]};
-	rw_n = 1;
+	if(d_to_e_reg[44:39] == 48) //STA
+		begin
+			rw_n = 0;
+			mem_data_out = A;
+		end
+		else if(d_to_e_reg[44:39] == 49) //STX
+		begin
+			rw_n = 0;
+			mem_data_out = X;
+		end
+		else if(d_to_e_reg[44:39] == 50) //STY
+		begin
+			rw_n = 0;
+			mem_data_out = Y;
+		end
+		else 
+		begin
+			rw_n = 1;
+		end
 	memory_access = 1;
-	clk_count = 2;
+			if(d_to_e_reg[44:39] == 21 || d_to_e_reg[44:39] == 25) //DEC || INC
+				clk_count = 3;
+			else
+				clk_count = 2;
 	clk_counter = 1;
 end
 5: //ZP, x mode
@@ -105,13 +148,70 @@ begin
 	halt_f_to_d = 1;
 	halt_d_to_e = 1;
 	addr_bus = {0 , X + d_to_e_reg[7:0]};
-	rw_n = 1;
+		if(d_to_e_reg[44:39] == 48) //STA
+		begin
+			rw_n = 0;
+			mem_data_out = A;
+		end
+		else if(d_to_e_reg[44:39] == 49) //STX
+		begin
+			rw_n = 0;
+			mem_data_out = X;
+		end
+		else if(d_to_e_reg[44:39] == 50) //STY
+		begin
+			rw_n = 0;
+			mem_data_out = Y;
+		end
+		else 
+		begin
+			rw_n = 1;
+		end
 	memory_access = 1;
-	clk_count = 2;
+			if(d_to_e_reg[44:39] == 21 || d_to_e_reg[44:39] == 25) //DEC || INC
+				clk_count = 3;
+			else
+				clk_count = 2;
 	clk_counter = 1;
 end
 6: //Abs, x mode
 begin
+		if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+			pc_temp = {d_to_e_reg[15:8] , d_to_e_reg[7:0]} + X;
+			execute_instt = 1;
+		end
+		else 
+		begin
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			addr_bus = {d_to_e_reg[15:8],d_to_e_reg[7:0]} + X;
+		if(d_to_e_reg[44:39] == 48) //STA
+		begin
+			rw_n = 0;
+			mem_data_out = A;
+		end
+		else if(d_to_e_reg[44:39] == 49) //STX
+		begin
+			rw_n = 0;
+			mem_data_out = X;
+		end
+		else if(d_to_e_reg[44:39] == 50) //STY
+		begin
+			rw_n = 0;
+			mem_data_out = Y;
+		end
+		else 
+		begin
+			rw_n = 1;
+		end
+			memory_access = 1;
+			if(d_to_e_reg[44:39] == 21 || d_to_e_reg[44:39] == 25) //DEC || INC
+				clk_count = 3;
+			else
+				clk_count = 2;
+			clk_counter = 1;
+		end
 end
 7: //Implied mode
 begin
@@ -151,13 +251,70 @@ begin
 	halt_f_to_d = 1;
 	halt_d_to_e = 1;
 	addr_bus = {0 , Y + d_to_e_reg[7:0]};
-	rw_n = 1;
+		if(d_to_e_reg[44:39] == 48) //STA
+		begin
+			rw_n = 0;
+			mem_data_out = A;
+		end
+		else if(d_to_e_reg[44:39] == 49) //STX
+		begin
+			rw_n = 0;
+			mem_data_out = X;
+		end
+		else if(d_to_e_reg[44:39] == 50) //STY
+		begin
+			rw_n = 0;
+			mem_data_out = Y;
+		end
+		else 
+		begin
+			rw_n = 1;
+		end
 	memory_access = 1;
-	clk_count = 2;
+		if(d_to_e_reg[44:39] == 21 || d_to_e_reg[44:39] == 25) //DEC || INC
+				clk_count = 3;
+			else
+				clk_count = 2;
 	clk_counter = 1;
 end
 13: //Abs, y
 begin
+		if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+			pc_temp = {d_to_e_reg[15:8] , d_to_e_reg[7:0]} + Y;
+			execute_instt = 1;
+		end
+		else 
+		begin
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			addr_bus = {d_to_e_reg[15:8],d_to_e_reg[7:0]} + Y;
+		if(d_to_e_reg[44:39] == 48) //STA
+		begin
+			rw_n = 0;
+			mem_data_out = A;
+		end
+		else if(d_to_e_reg[44:39] == 49) //STX
+		begin
+			rw_n = 0;
+			mem_data_out = X;
+		end
+		else if(d_to_e_reg[44:39] == 50) //STY
+		begin
+			rw_n = 0;
+			mem_data_out = Y;
+		end
+		else 
+		begin
+			rw_n = 1;
+		end
+			memory_access = 1;
+			if(d_to_e_reg[44:39] == 21 || d_to_e_reg[44:39] == 25) //DEC || INC
+				clk_count = 3;
+			else
+				clk_count = 2;
+			clk_counter = 1;
+		end
 end
 endcase
 
@@ -197,32 +354,158 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 					halt_d_to_e = 0;
 			 end
 			end
+		else if(d_to_e_reg[44:39] == 21) //DEC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;
+			end
+		end
+		else if(d_to_e_reg[44:39] == 25) //INC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;				
+			end
+		end
 		else begin
 			if (clk_counter == 2)
 			begin 
-					//LSB = mem_data_in;
+					//temp_A = mem_data_in;
 					memory_access = 0;
+			end
+			else if (clk_counter == 3) 
+			begin
+						memory_access = 0;
+						halt_f_to_d = 0;
+						halt_d_to_e = 0;
+						clk_count = 0;
+						clk_counter = 0;
 			end
 		end
 	end
 	4: //ZP mode
 	begin
+		if(d_to_e_reg[44:39] == 21) //DEC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;
+			end
+		end
+		else if(d_to_e_reg[44:39] == 25) //INC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;				
+			end
+		end
+		else begin
 		 if (clk_counter == 2)
 			 begin 
 				//temp_A = mem_data_in;
 				memory_access = 0;
 			 end
+		 else if (clk_counter == 3) 
+			begin
+						memory_access = 0;
+						halt_f_to_d = 0;
+						halt_d_to_e = 0;
+						clk_count = 0;
+						clk_counter = 0;
+			end
+		end
 	end
 	5: //ZP, x mode
 	begin
+	if(d_to_e_reg[44:39] == 21) //DEC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;
+			end
+		end
+		else if(d_to_e_reg[44:39] == 25) //INC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;				
+			end
+		end
+		else begin
 		 if (clk_counter == 2)
 			 begin 
 				//temp_A = mem_data_in;
 				memory_access = 0;
 			 end
+		else if (clk_counter == 3) 
+			begin
+						memory_access = 0;
+						halt_f_to_d = 0;
+						halt_d_to_e = 0;
+						clk_count = 0;
+						clk_counter = 0;
+			end
+		end
 	end
 	6: //Abs, x mode
 	begin
+		if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+			 if (clk_counter == 2)
+			 begin 
+					flush_f_to_d = 0;
+			 end
+			 else	if (clk_counter == 3)
+			 begin 
+					halt_d_to_e = 0;
+			 end
+			end
+		else if(d_to_e_reg[44:39] == 21) //DEC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;
+			end
+		end
+		else if(d_to_e_reg[44:39] == 25) //INC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;				
+			end
+		end
+		else begin
+			if (clk_counter == 2)
+			begin 
+					//temp_A = mem_data_in;
+					memory_access = 0;
+			end
+			else if (clk_counter == 3) 
+			begin
+						memory_access = 0;
+						halt_f_to_d = 0;
+						halt_d_to_e = 0;
+						clk_count = 0;
+						clk_counter = 0;
+			end
+		end
 	end
 	7: //Implied mode
 	begin
@@ -301,14 +584,86 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 	end
 	12: //ZP, y
 	begin
+		if(d_to_e_reg[44:39] == 21) //DEC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;
+			end
+		end
+		else if(d_to_e_reg[44:39] == 25) //INC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;				
+			end
+		end
+		else begin
 			if (clk_counter == 2)
 			 begin 
 				//temp_A = mem_data_in;
 				memory_access = 0;
 			 end
+			else if (clk_counter == 3) 
+			begin
+						memory_access = 0;
+						halt_f_to_d = 0;
+						halt_d_to_e = 0;
+						clk_count = 0;
+						clk_counter = 0;
+			end
+			end
 	end
 	13: //Abs, y
 	begin
+		if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+			 if (clk_counter == 2)
+			 begin 
+					flush_f_to_d = 0;
+			 end
+			 else	if (clk_counter == 3)
+			 begin 
+					halt_d_to_e = 0;
+			 end
+			end
+		else if(d_to_e_reg[44:39] == 21) //DEC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;
+			end
+		end
+		else if(d_to_e_reg[44:39] == 25) //INC
+		begin 
+		if (clk_counter == 3)
+			begin 
+				memory_access = 0;
+				rw_n = 1;
+				execute_instt = 1;				
+			end
+		end
+		else begin
+			if (clk_counter == 2)
+			begin 
+					//temp_A = mem_data_in;
+					memory_access = 0;
+			end
+			else if (clk_counter == 3) 
+			begin
+						memory_access = 0;
+						halt_f_to_d = 0;
+						halt_d_to_e = 0;
+						clk_count = 0;
+						clk_counter = 0;
+			end
+		end
 	end
 	endcase
 end
@@ -333,31 +688,169 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 		begin
 		end
 		else begin
-			if (clk_counter == 2)
+			if(d_to_e_reg[44:39] == 48 || d_to_e_reg[44:39] == 49 || d_to_e_reg[44:39] == 50) //STA, STX, STY
+			begin
+			 if (clk_counter == 2)
+				 begin 
+				  execute_instt = 1;
+				 end
+			end
+			else if(d_to_e_reg[44:39] == 21) //DEC
 			begin 
-					temp_A = mem_data_in;
-					execute_instt = 1;
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A - 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else if(d_to_e_reg[44:39] == 25) //INC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A + 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else
+			begin
+				if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						execute_instt = 1;
+				end
 			end
 		end
 	end
 	4: //ZP mode
 	begin
+	if(d_to_e_reg[44:39] == 48 || d_to_e_reg[44:39] == 49 || d_to_e_reg[44:39] == 50) //STA, STX, STY
+		begin
+		 if (clk_counter == 2)
+			 begin 
+			  execute_instt = 1;
+			 end
+		end
+		else if(d_to_e_reg[44:39] == 21) //DEC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A - 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else if(d_to_e_reg[44:39] == 25) //INC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A + 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+		else
+		begin
 		 if (clk_counter == 2)
 			 begin 
 				temp_A = mem_data_in;
 				execute_instt = 1;
 			 end
+		end
 	end
 	5: //ZP, x mode
 	begin
+		if(d_to_e_reg[44:39] == 48 || d_to_e_reg[44:39] == 49 || d_to_e_reg[44:39] == 50) //STA, STX, STY
+		begin
+		 if (clk_counter == 2)
+			 begin 
+			  execute_instt = 1;
+			 end
+		end
+		else if(d_to_e_reg[44:39] == 21) //DEC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A - 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else if(d_to_e_reg[44:39] == 25) //INC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A + 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+		else
+		begin
 		 if (clk_counter == 2)
 			 begin 
 				temp_A = mem_data_in;
 				execute_instt = 1;
 			 end
+		end
 	end
 	6: //Abs, x mode
 	begin
+		if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+		end
+		else begin
+			if(d_to_e_reg[44:39] == 48 || d_to_e_reg[44:39] == 49 || d_to_e_reg[44:39] == 50) //STA, STX, STY
+			begin
+			 if (clk_counter == 2)
+				 begin 
+				  execute_instt = 1;
+				 end
+			end
+			else if(d_to_e_reg[44:39] == 21) //DEC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A - 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else if(d_to_e_reg[44:39] == 25) //INC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A + 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else
+			begin
+				if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						execute_instt = 1;
+				end
+			end
+		end
 	end
 	7: //Implied mode
 	begin
@@ -408,14 +901,88 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 	end
 	12: //ZP, y
 	begin
+		if(d_to_e_reg[44:39] == 48 || d_to_e_reg[44:39] == 49 || d_to_e_reg[44:39] == 50) //STA, STX, STY
+		begin
+		 if (clk_counter == 2)
+			 begin 
+			  execute_instt = 1;
+			 end
+		end
+		else if(d_to_e_reg[44:39] == 21) //DEC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A - 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else if(d_to_e_reg[44:39] == 25) //INC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A + 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+		else
+		begin
 			if (clk_counter == 2)
 			 begin 
 				temp_A = mem_data_in;
 				execute_instt = 1;
 			 end
+		end
 	end
 	13: //Abs, y
 	begin
+		if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+		end
+		else begin
+			if(d_to_e_reg[44:39] == 48 || d_to_e_reg[44:39] == 49 || d_to_e_reg[44:39] == 50) //STA, STX, STY
+			begin
+			 if (clk_counter == 2)
+				 begin 
+				  execute_instt = 1;
+				 end
+			end
+			else if(d_to_e_reg[44:39] == 21) //DEC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A - 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else if(d_to_e_reg[44:39] == 25) //INC
+			begin 
+			if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						memory_access = 0;
+						mem_data_out = temp_A + 1;
+						rw_n = 0;
+						memory_access = 1;
+				end
+			end
+			else
+			begin
+				if (clk_counter == 2)
+				begin 
+						temp_A = mem_data_in;
+						execute_instt = 1;
+				end
+			end
+		end
 	end
 	endcase
 end
@@ -447,13 +1014,22 @@ always @(posedge execute_instt) begin
 		end
 		
 	3: begin	//ASL
-			reg_addr = 0; //A
+		if(d_to_e_reg[35:32] == 1) //Accumulator addressing mode
+		begin
+			reg_addr = 0;
+			reg_data = A << 1;
 			reg_write = 1;
-			reg_data = (temp_A | A)<<1;
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			clk_count = 0;
 			clk_counter = 0;
+		end
+		else begin
+			memory_access = 1; //A
+			rw_n = 0;
+			mem_data_out = temp_A <<1;
+			clk_count = 3;
+		end
 		end
 		
 	4: begin //BCC
@@ -583,11 +1159,72 @@ always @(posedge execute_instt) begin
 						clk_counter = 1;
 				end
 		 end
-		 
+
+	18: begin //CMP
+			if(temp_A > A)
+				reg_data = PSW & 16'h7f; //N = 0
+			else if(temp_A < A)
+				reg_data = PSW | 16'h80; //N = 1
+			else if(temp_A == A)
+				reg_data = PSW | 16'h02; //Z = 1
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end		
+		
+	19: begin //CPX
+			if(temp_A > X)
+				reg_data = PSW & 16'h7f; //N = 0
+			else if(temp_A < X)
+				reg_data = PSW | 16'h80; //N = 1
+			else if(temp_A == X)
+				reg_data = PSW | 16'h02; //Z = 1
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end	
+		
+	20: begin //CPY
+			if(temp_A > Y)
+				reg_data = PSW & 16'h7f; //N = 0
+			else if(temp_A < Y)
+				reg_data = PSW | 16'h80; //N = 1
+			else if(temp_A == Y)
+				reg_data = PSW | 16'h02; //Z = 1
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end	
+		
+	21: begin //DEC
+			memory_access = 0;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+
 	24: begin //EOR
 			reg_addr = 0; //A
 			reg_write = 1;
 			reg_data = temp_A ^ A;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+				
+	25: begin //INC
+			memory_access = 0;
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			clk_count = 0;
@@ -604,21 +1241,53 @@ always @(posedge execute_instt) begin
 				clk_counter = 1;
 		 end
 		 
-		 
-	32: begin //LDY
-			reg_data = LSB;
-			reg_addr = 2;
-			reg_write = 1;
-		end
-		
 	30: begin //LDA
 			reg_data = temp_A;
-			reg_addr = 0;
+			reg_addr = 0; //A
 			reg_write = 1;
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			clk_count = 0;
 			clk_counter = 0;
+		end
+	
+	31: begin //LDX
+			reg_data = temp_A;
+			reg_addr = 1; //X
+			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end	
+				 
+	32: begin //LDY
+			reg_data = temp_A;
+			reg_addr = 2; //Y
+			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	33: begin	//LSR
+		if(d_to_e_reg[35:32] == 1) //Accumulator addressing mode
+		begin
+			reg_addr = 0;
+			reg_data = A >> 1;
+			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		else begin
+			memory_access = 1; //A
+			rw_n = 0;
+			mem_data_out = temp_A >>1;
+			clk_count = 3;
+		end
 		end
 		
 	35: begin //ORA
@@ -630,10 +1299,57 @@ always @(posedge execute_instt) begin
 			clk_count = 0;
 			clk_counter = 0;
 		end
+	
+	40: begin	//ROL
+			if(d_to_e_reg[35:32] == 1) //Accumulator addressing mode
+			begin
+				reg_addr = 0;
+				extra_bit = A[7];
+				reg_data = A << 1;
+				reg_data[0] = extra_bit;
+				reg_write = 1;
+				halt_f_to_d = 0;
+				halt_d_to_e = 0;
+				clk_count = 0;
+				clk_counter = 0;
+			end
+			else begin
+				memory_access = 1; //A
+				rw_n = 0;
+				extra_bit = temp_A[7];
+				mem_data_out = temp_A <<1;
+				mem_data_out[0] = extra_bit;
+				clk_count = 3;
+			end
+		end
 		
-	48: begin //STA
+	41: begin	//ROR
+			if(d_to_e_reg[35:32] == 1) //Accumulator addressing mode
+			begin
+				reg_addr = 0;
+				extra_bit = A[0];
+				reg_data = A >> 1;
+				reg_data[7] = extra_bit;
+				reg_write = 1;
+				halt_f_to_d = 0;
+				halt_d_to_e = 0;
+				clk_count = 0;
+				clk_counter = 0;
+			end
+			else begin
+				memory_access = 1; //A
+				rw_n = 0;
+				extra_bit = temp_A[0];
+				mem_data_out = temp_A >>1;
+				mem_data_out[7] = extra_bit;
+				clk_count = 3;
+			end
+		end
+		
+	48 || 49 || 50: begin //STA
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
+			rw_n = 1;
 			clk_count = 0;
 			clk_counter = 0;
 		end
