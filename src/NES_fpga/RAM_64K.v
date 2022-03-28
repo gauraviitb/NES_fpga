@@ -51,10 +51,12 @@ initial begin
 	memory[15] = 13;
 	memory[16] = 14;
 	
+	memory[770] = 5;
 	//Data section
 	memory[1541] = 16'h40;
-	memory[1542] = 16'h10;
+	memory[1542] = 16'h2D;
 	memory[1543] = 2;
+	memory[1544] = 3;
 end
 
 always @(posedge clk) begin

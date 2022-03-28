@@ -41,6 +41,7 @@ module execute_stage(
 
 reg [15:0] pc_temp;
 reg [7:0] ADL, ADH, temp_A, LSB, MSB;
+reg [8:0] IND_Y;
 reg [5:0] clk_count = 0, clk_counter = 0;
 reg execute_instt = 0;
 
@@ -68,17 +69,46 @@ begin
 end
 2: //Immediate mode
 begin
+	LSB = d_to_e_reg[7:0];
+	execute_instt = 1;
 end
 3: //Absolute mode
 begin
-	pc_temp = {d_to_e_reg[15:8] , d_to_e_reg[7:0]};
-	execute_instt = 1;
+	if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+			pc_temp = {d_to_e_reg[15:8] , d_to_e_reg[7:0]};
+			execute_instt = 1;
+		end
+	else 
+		begin
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			addr_bus = {d_to_e_reg[15:8],d_to_e_reg[7:0]};
+			rw_n = 1;
+			memory_access = 1;
+			clk_count = 2;
+			clk_counter = 1;
+		end
 end
 4: //ZP mode
 begin
+	halt_f_to_d = 1;
+	halt_d_to_e = 1;
+	addr_bus = {0 , d_to_e_reg[7:0]};
+	rw_n = 1;
+	memory_access = 1;
+	clk_count = 2;
+	clk_counter = 1;
 end
 5: //ZP, x mode
 begin
+	halt_f_to_d = 1;
+	halt_d_to_e = 1;
+	addr_bus = {0 , X + d_to_e_reg[7:0]};
+	rw_n = 1;
+	memory_access = 1;
+	clk_count = 2;
+	clk_counter = 1;
 end
 6: //Abs, x mode
 begin
@@ -104,12 +134,27 @@ begin
 end
 10: //IND, y
 begin
+	halt_f_to_d = 1;
+	halt_d_to_e = 1;
+	ADL = d_to_e_reg[7:0];
+	addr_bus = {0,ADL};
+	rw_n = 1;
+	memory_access = 1;
+	clk_count = 4;
+	clk_counter = 1;
 end
 11: //Indirect
 begin
 end
 12: //ZP, y
 begin
+	halt_f_to_d = 1;
+	halt_d_to_e = 1;
+	addr_bus = {0 , Y + d_to_e_reg[7:0]};
+	rw_n = 1;
+	memory_access = 1;
+	clk_count = 2;
+	clk_counter = 1;
 end
 13: //Abs, y
 begin
@@ -141,12 +186,40 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 	end
 	3: //Absolute mode
 	begin
+	if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+			 if (clk_counter == 2)
+			 begin 
+					flush_f_to_d = 0;
+			 end
+			 else	if (clk_counter == 3)
+			 begin 
+					halt_d_to_e = 0;
+			 end
+			end
+		else begin
+			if (clk_counter == 2)
+			begin 
+					//LSB = mem_data_in;
+					memory_access = 0;
+			end
+		end
 	end
 	4: //ZP mode
 	begin
+		 if (clk_counter == 2)
+			 begin 
+				//temp_A = mem_data_in;
+				memory_access = 0;
+			 end
 	end
 	5: //ZP, x mode
 	begin
+		 if (clk_counter == 2)
+			 begin 
+				//temp_A = mem_data_in;
+				memory_access = 0;
+			 end
 	end
 	6: //Abs, x mode
 	begin
@@ -156,11 +229,19 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 	end
 	8: //Relative mode
 	begin
+		 if (clk_counter == 2)
+		 begin 
+				flush_f_to_d = 0;
+		 end
+		 else	if (clk_counter == 3)
+		 begin 
+				halt_d_to_e = 0;
+		 end
 	end
 	9: //IND, x
 	begin
 		if (clk_counter == 2)
-		begin LSB = mem_data_in;
+		begin //LSB = mem_data_in;
 				memory_access = 0;
 				ADL = ADL + 1;
 				addr_bus = {0,ADL};
@@ -168,26 +249,63 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 				memory_access = 1;
 		end
 		else if (clk_counter == 3)
-		begin MSB = mem_data_in;
-				memory_access = 0;
-				//addr_bus = {MSB,LSB};
-				rw_n = 1;
-				memory_access = 1;
+		begin 
+				if(d_to_e_reg[44:39] == 48) //STA
+				begin
+					//MSB = mem_data_in;
+					memory_access = 0;
+					//addr_bus = {MSB,LSB};
+					rw_n = 0;
+					memory_access = 1;
+					mem_data_out = A;
+				end
+				else begin
+					//MSB = mem_data_in;
+					memory_access = 0;
+					//addr_bus = {MSB,LSB};
+					rw_n = 1;
+					memory_access = 1;
+				end
 		end
 		else if (clk_counter == 4)
-		begin temp_A = mem_data_in;
+		begin //temp_A = mem_data_in;
 				memory_access = 0;
 				//execute_instt = 1;
 		end
 	end
 	10: //IND, y
 	begin
+		if (clk_counter == 2)
+		begin //IND_Y = mem_data_in + Y;
+				memory_access = 0;
+				ADL = ADL + 1;
+				addr_bus = {0,ADL};
+				rw_n = 1;
+				memory_access = 1;
+		end
+		else if (clk_counter == 3)
+		begin //MSB = mem_data_in + IND_Y[8];
+				memory_access = 0;
+				//addr_bus = {MSB,LSB};
+				rw_n = 1;
+				memory_access = 1;
+		end
+		else if (clk_counter == 4)
+		begin //temp_A = mem_data_in;
+				memory_access = 0;
+				//execute_instt = 1;
+		end
 	end
 	11: //Indirect
 	begin
 	end
 	12: //ZP, y
 	begin
+			if (clk_counter == 2)
+			 begin 
+				//temp_A = mem_data_in;
+				memory_access = 0;
+			 end
 	end
 	13: //Abs, y
 	begin
@@ -211,22 +329,32 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 	end
 	3: //Absolute mode
 	begin
-		if (clk_counter == 2)
-		 begin 
-				flush_f_to_d = 0;
-				//halt_d_to_e = 0;
-		 end
-		 else	if (clk_counter == 3)
-		 begin 
-				//flush_f_to_d = 0;
-				halt_d_to_e = 0;
-		 end
+	if(d_to_e_reg[44:39] == 29) //JSR
+		begin
+		end
+		else begin
+			if (clk_counter == 2)
+			begin 
+					temp_A = mem_data_in;
+					execute_instt = 1;
+			end
+		end
 	end
 	4: //ZP mode
 	begin
+		 if (clk_counter == 2)
+			 begin 
+				temp_A = mem_data_in;
+				execute_instt = 1;
+			 end
 	end
 	5: //ZP, x mode
 	begin
+		 if (clk_counter == 2)
+			 begin 
+				temp_A = mem_data_in;
+				execute_instt = 1;
+			 end
 	end
 	6: //Abs, x mode
 	begin
@@ -236,24 +364,37 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 	end
 	8: //Relative mode
 	begin
-		if (clk_counter == 2)
-		 begin 
-				flush_f_to_d = 0;
-				//halt_d_to_e = 0;
-		 end
-		 else	if (clk_counter == 3)
-		 begin 
-				//flush_f_to_d = 0;
-				halt_d_to_e = 0;
-		 end
+
 	end
 	9: //IND, x
 	begin
 		if (clk_counter == 2)
-		 LSB = mem_data_in;
+				LSB = mem_data_in;
 		else if (clk_counter == 3)
 		 begin 
 				 MSB = mem_data_in;
+				 addr_bus = {MSB,LSB};
+		 end
+		else if (clk_counter == 4)
+		 begin 
+		 	if(d_to_e_reg[44:39] == 48) //STA
+				begin
+					execute_instt = 1;
+				end
+			else 
+				begin
+					temp_A = mem_data_in;
+					execute_instt = 1;
+				end
+		 end
+	end
+	10: //IND, y
+	begin
+		if (clk_counter == 2)
+				IND_Y = mem_data_in + Y;
+		else if (clk_counter == 3)
+		 begin 
+				 MSB = mem_data_in + IND_Y[8];
 				 addr_bus = {MSB,LSB};
 		 end
 		else if (clk_counter == 4)
@@ -262,14 +403,16 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 				execute_instt = 1;
 		 end
 	end
-	10: //IND, y
-	begin
-	end
 	11: //Indirect
 	begin
 	end
 	12: //ZP, y
 	begin
+			if (clk_counter == 2)
+			 begin 
+				temp_A = mem_data_in;
+				execute_instt = 1;
+			 end
 	end
 	13: //Abs, y
 	begin
@@ -284,12 +427,33 @@ end
 always @(posedge execute_instt) begin
 	case (d_to_e_reg[44:39]) //instt type
 	1: begin //ADC
+			reg_addr = 0; //A
+			reg_write = 1;
+			reg_data = temp_A + A;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
 		end
 		
-	2: begin //AND
+	2: begin //AND	
+			reg_addr = 0; //A
+			reg_write = 1;
+			reg_data = temp_A & A;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
 		end
 		
 	3: begin	//ASL
+			reg_addr = 0; //A
+			reg_write = 1;
+			reg_data = (temp_A | A)<<1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
 		end
 		
 	4: begin //BCC
@@ -325,6 +489,19 @@ always @(posedge execute_instt) begin
 		 end
 		 
 	6: begin //BEQ
+			if(PSW[1] == 0) //non zero
+				begin 
+				end
+			else 
+				begin //zero
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
 		end
 		
 	8: begin //BMI
@@ -342,7 +519,23 @@ always @(posedge execute_instt) begin
 						clk_counter = 1;
 				end
 		 end
-
+		 
+	9: begin //BNE
+			if(PSW[1] == 1) //zero
+				begin 
+				end
+			else 
+				begin //non-zero
+						reg_addr = 3; //PC
+						reg_write = 1;
+						reg_data = pc_temp;
+						halt_d_to_e = 1;
+						flush_f_to_d = 1;
+						clk_count = 3;
+						clk_counter = 1;
+				end
+		end
+		
 	10: begin //BPL
 			if(PSW[7] == 1) //negative
 				begin 
@@ -390,7 +583,17 @@ always @(posedge execute_instt) begin
 						clk_counter = 1;
 				end
 		 end
-
+		 
+	24: begin //EOR
+			reg_addr = 0; //A
+			reg_write = 1;
+			reg_data = temp_A ^ A;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
 	29: begin //JSR
 				reg_addr = 3; //PC
 				reg_write = 1;
@@ -401,10 +604,34 @@ always @(posedge execute_instt) begin
 				clk_counter = 1;
 		 end
 		 
+		 
+	32: begin //LDY
+			reg_data = LSB;
+			reg_addr = 2;
+			reg_write = 1;
+		end
+		
+	30: begin //LDA
+			reg_data = temp_A;
+			reg_addr = 0;
+			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
 	35: begin //ORA
 			reg_data = A | temp_A;
 			reg_addr = 0;
 			reg_write = 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	48: begin //STA
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			clk_count = 0;
