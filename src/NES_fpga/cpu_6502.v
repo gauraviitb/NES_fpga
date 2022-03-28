@@ -96,11 +96,29 @@ always @(posedge reg_write) begin
 	endcase
 end
 
+wire register_write;
+assign register_write = A_write || X_write || Y_write || PC_write || PSW_write || SP_write;
+
+always @(posedge register_write) begin
+	if(A_write == 1)
+			A = A_data;		
+	if(X_write == 1)
+			X = X_data;
+	if(Y_write == 1)
+			Y = Y_data;
+	if(PC_write == 1)
+			PC = PC_data;
+	if(PSW_write == 1)
+			PSW = PSW_data;
+	if(SP_write == 1)
+			SP = SP_data;
+end
+
 //Decode stage
 //determine instt size, addressing mode, Instt type
 decode_stage u_decode(clk, rst_n, f_to_d_reg, halt_d_to_e, d_to_e_reg);
 
 //Execute stage
-execute_stage u_execute(clk, rst_n, A, X, Y, PSW, data, d_to_e_reg, halt_f_to_d, halt_d_to_e, load_store_addr, mem_data_out, load_store_n, memory_access, reg_addr, reg_write, reg_data, flush_f_to_d);
+execute_stage u_execute(clk, rst_n, A, X, Y, PSW, data, d_to_e_reg, halt_f_to_d, halt_d_to_e, load_store_addr, mem_data_out, load_store_n, memory_access, reg_addr, reg_write, reg_data, flush_f_to_d, A_data, A_write, X_data, X_write, Y_data, Y_write, PC_data, PC_write, PSW_data, PSW_write, SP_data, SP_write);
 
 endmodule

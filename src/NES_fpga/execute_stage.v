@@ -36,7 +36,19 @@ module execute_stage(
 	 output reg [2:0] reg_addr,
 	 output reg reg_write,
 	 output reg [15:0] reg_data,
-	 output reg flush_f_to_d
+	 output reg flush_f_to_d,
+	 output reg [7:0] A_data,
+	 output reg A_write,
+	 output reg [7:0] X_data,
+	 output reg X_write,
+	 output reg [7:0] Y_data,
+	 output reg Y_write,
+	 output reg [15:0] PC_data,
+	 output reg PC_write,
+	 output reg [7:0] PSW_data,
+	 output reg PSW_write,
+	 output reg [7:0] SP_data,
+	 output reg SP_write
     );
 
 reg [15:0] pc_temp;
@@ -245,9 +257,18 @@ begin
 	clk_count = 4;
 	clk_counter = 1;
 end
+
 11: //Indirect
 begin
+	halt_f_to_d = 1;
+	halt_d_to_e = 1;
+	addr_bus = {d_to_e_reg[15:8] ,d_to_e_reg[7:0]};
+	rw_n = 1;
+	memory_access = 1;
+	clk_count = 5;
+	clk_counter = 1;
 end
+
 12: //ZP, y
 begin
 	halt_f_to_d = 1;
@@ -327,6 +348,7 @@ always@(posedge clk) begin
 reg_write = 0;
 execute_instt = 0;
 halt_f_to_d = 0;
+PC_write = 0;
 if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 //d_to_e_reg[7:0] LSB
 //d_to_e_reg[15:8] MSB
@@ -516,14 +538,33 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 		 begin 
 				reg_write = 0;
 				memory_access = 0;
-			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38) //PLP || PLA
+			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38 || d_to_e_reg[44:39] == 42 || d_to_e_reg[44:39] == 43) //PLP || PLA
 			begin	
 				//reg_data = mem_data_in;
+				reg_write = 1;
 				if(d_to_e_reg[44:39] == 39)
 					reg_addr = 4;//PSW
 				if(d_to_e_reg[44:39] == 38)
 					reg_addr = 0;//A
-				reg_write = 1;
+				if(d_to_e_reg[44:39] == 42) //RTI
+				begin
+					reg_addr = 4;//PSW
+					SP_write = 1;
+					SP_data = SP + 1;
+					memory_access = 1;
+					add_bus = {16'hff, SP + 1};
+					rw_n = 1;
+				end
+				if(d_to_e_reg[44:39] == 43) //RTS
+				begin
+					//PC_temp[7:0] = mem_data_in; 
+					reg_write = 0;
+					SP_write = 1;
+					SP_data = SP + 1;
+					memory_access = 1;
+					add_bus = {16'hff, SP + 1};
+					rw_n = 1;
+				end
 			end
 			else 
 			begin
@@ -531,6 +572,38 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 				halt_d_to_e = 0;
 				clk_count = 0;
 				clk_counter = 0;
+			end
+		 end
+		 else if (clk_counter == 3) 
+		 begin
+			if(d_to_e_reg[44:39] == 42) //RTI
+			begin
+				reg_write = 0;
+				SP_write = 1;
+				SP_data = SP + 1;
+				//PC_temp[7:0] = mem_data_in;
+				memory_access = 1;
+				add_bus = {16'hff, SP + 1};
+				rw_n = 1;
+			end
+			if(d_to_e_reg[44:39] == 43) //RTS
+			begin
+				//PC_temp[15:8] = mem_data_in; 
+				PC_write = 1;
+				//PC_data = PC_temp;
+				memory_access = 0;
+			end
+		 end
+		 else if (clk_counter == 4) 
+		 begin
+		 	if(d_to_e_reg[44:39] == 42) //RTI
+			begin
+			reg_write = 0;
+			SP_write = 0;
+			//PC_temp[15:8] = mem_data_in ;
+			memory_access = 0;
+			PC_write = 1;
+			//PC_data = PC_temp;
 			end
 		 end
 	end
@@ -604,9 +677,36 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 				//execute_instt = 1;
 		end
 	end
+	
 	11: //Indirect
 	begin
+		if (clk_counter == 2)
+		begin
+			//ADL = mem_data_in;
+			memory_access = 0;
+			addr_bus = addr_bus + 1;
+			rw_n = 0;
+			memory_access = 1;
+		end
+		if (clk_counter == 3)
+		begin
+			halt_f_to_d = 0;
+			//ADH = mem_data_in;
+			memory_access = 0;
+			//PC_data = {ADH,ADL};
+		end
+		if (clk_counter == 4)
+		begin 
+			flush_f_to_d = 0;
+		end
+		else	if(clk_counter == 5)
+		begin 
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
 	end
+	
 	12: //ZP, y
 	begin
 		if(d_to_e_reg[44:39] == 21) //DEC
@@ -882,11 +982,17 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 	begin
 		 if (clk_counter == 2)
 		 begin 
-			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38) //PLP || PLA
+			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38 || d_to_e_reg[44:39] == 42) //PLP || PLA
 			begin	
 				reg_data = mem_data_in;
 			end
+			
+			if(d_to_e_reg[44:39] == 43) //RTS
+			 begin
+				PC_temp[7:0] = mem_data_in; 
+			 end
 		 end
+		 
 		 if (clk_counter == 3)
 		 begin
 			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38) //PLP || PLA
@@ -897,6 +1003,35 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 				clk_count = 0;
 				clk_counter = 0;
 			end
+			
+			if (d_to_e_reg[44:39] == 42) //RTI
+			 begin
+				PC_temp[7:0] = mem_data_in;
+			 end
+			 
+			if(d_to_e_reg[44:39] == 43) //RTS
+			begin
+				PC_temp[15:8] = mem_data_in; 
+				PC_data = PC_temp;
+				halt_f_to_d = 0;
+				halt_d_to_e = 0;
+				clk_count = 0;
+				clk_counter = 0;
+			end
+
+		 end
+		 
+		if (clk_counter == 4) 
+		 begin
+			 if (d_to_e_reg[44:39] == 42) //RTI
+			 begin
+				PC_temp[15:8] = mem_data_in ;
+				PC_data = PC_temp;
+				halt_f_to_d = 0;
+				halt_d_to_e = 0;
+				clk_count = 0;
+				clk_counter = 0;
+			 end
 		 end
 	end
 	
@@ -941,9 +1076,20 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 				execute_instt = 1;
 		 end
 	end
+	
 	11: //Indirect
 	begin
+		if (clk_counter == 2)
+		begin
+			ADL = mem_data_in;
+		end
+		if (clk_counter == 3)
+		begin
+			ADH = mem_data_in;
+			execute_instt = 1;
+		end
 	end
+	
 	12: //ZP, y
 	begin
 		if(d_to_e_reg[44:39] == 48 || d_to_e_reg[44:39] == 49 || d_to_e_reg[44:39] == 50) //STA, STX, STY
@@ -1356,6 +1502,13 @@ always @(posedge execute_instt) begin
 			clk_counter = 0;
 		end
 		
+	29: begin //JMP
+				PC_data = {ADH,ADL};
+				PC_write = 1;
+				halt_d_to_e = 1;
+				flush_f_to_d = 1;
+		 end
+		
 	29: begin //JSR
 				reg_addr = 3; //PC
 				reg_write = 1;
@@ -1519,7 +1672,8 @@ always @(posedge execute_instt) begin
 				clk_count = 0;
 				clk_counter = 0;
 			end
-			else begin
+			else 
+			begin
 				memory_access = 1; //A
 				rw_n = 0;
 				extra_bit = temp_A[0];
@@ -1528,6 +1682,38 @@ always @(posedge execute_instt) begin
 				clk_count = 3;
 			end
 		end
+		
+	42: begin //RTI
+			reg_data = SP + 1;
+			reg_write = 1;
+			reg_addr = 5; //SP
+			
+			addr_bus = {8'hff,SP + 1};
+			rw_n = 1;
+			memory_access = 1;
+			
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			clk_count = 4;
+			clk_counter = 1;
+		 
+		 end
+		 
+	43: begin //RTS
+			reg_data = SP + 1;
+			reg_write = 1;
+			reg_addr = 5; //SP
+			
+			addr_bus = {8'hff,SP + 1};
+			rw_n = 1;
+			memory_access = 1;
+			
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			clk_count = 3;
+			clk_counter = 1;
+		 
+		 end
 		
 	44: begin //SBC
 			reg_addr = 0; //A
