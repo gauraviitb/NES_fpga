@@ -1,2 +1,4 @@
 JSR implementation is incomplete. Return address is not saved.
 DEC/INC implementation can be changed as per ASL/LSR/ROL/ROR or vice versa.
+Flag update according to instt. (check all instt)
+ROL ROR ASL LSR imp needs update.

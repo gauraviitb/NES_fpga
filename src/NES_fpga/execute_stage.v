@@ -67,6 +67,7 @@ always@(posedge d_to_e_reg[38]) begin
 case (d_to_e_reg[35:32])
 1: //Accumulator mode 
 begin
+	execute_instt = 1;
 end
 2: //Immediate mode
 begin
@@ -215,6 +216,7 @@ begin
 end
 7: //Implied mode
 begin
+execute_instt = 1;
 end
 8: //Relative mode
 begin
@@ -507,9 +509,32 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count) begin
 			end
 		end
 	end
+	
 	7: //Implied mode
 	begin
+		 if (clk_counter == 2)
+		 begin 
+				reg_write = 0;
+				memory_access = 0;
+			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38) //PLP || PLA
+			begin	
+				//reg_data = mem_data_in;
+				if(d_to_e_reg[44:39] == 39)
+					reg_addr = 4;//PSW
+				if(d_to_e_reg[44:39] == 38)
+					reg_addr = 0;//A
+				reg_write = 1;
+			end
+			else 
+			begin
+				halt_f_to_d = 0;
+				halt_d_to_e = 0;
+				clk_count = 0;
+				clk_counter = 0;
+			end
+		 end
 	end
+	
 	8: //Relative mode
 	begin
 		 if (clk_counter == 2)
@@ -852,9 +877,29 @@ if(d_to_e_reg[38] == 1 && clk_count !== 0 && clk_counter !== clk_count+1) begin
 			end
 		end
 	end
+	
 	7: //Implied mode
 	begin
+		 if (clk_counter == 2)
+		 begin 
+			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38) //PLP || PLA
+			begin	
+				reg_data = mem_data_in;
+			end
+		 end
+		 if (clk_counter == 3)
+		 begin
+			if(d_to_e_reg[44:39] == 39 || d_to_e_reg[44:39] == 38) //PLP || PLA
+			begin	
+				reg_write = 0;
+				halt_f_to_d = 0;
+				halt_d_to_e = 0;
+				clk_count = 0;
+				clk_counter = 0;
+			end
+		 end
 	end
+	
 	8: //Relative mode
 	begin
 
@@ -1159,14 +1204,54 @@ always @(posedge execute_instt) begin
 						clk_counter = 1;
 				end
 		 end
+		 
+	14: begin //CLC
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			reg_data = PSW & 8'hfe;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	15: begin //CLD
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			reg_data = PSW & 8'hf7;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	16: begin //CLI
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			reg_data = PSW & 8'hfb;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		 
+	17: begin //CLV
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			reg_data = PSW & 8'hbf;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
 
 	18: begin //CMP
 			if(temp_A > A)
-				reg_data = PSW & 16'h7f; //N = 0
+				reg_data = PSW & 8'h7f; //N = 0
 			else if(temp_A < A)
-				reg_data = PSW | 16'h80; //N = 1
+				reg_data = PSW | 8'h80; //N = 1
 			else if(temp_A == A)
-				reg_data = PSW | 16'h02; //Z = 1
+				reg_data = PSW | 8'h02; //Z = 1
 			reg_addr = 4; //PSW
 			reg_write = 1;
 			halt_f_to_d = 0;
@@ -1177,11 +1262,11 @@ always @(posedge execute_instt) begin
 		
 	19: begin //CPX
 			if(temp_A > X)
-				reg_data = PSW & 16'h7f; //N = 0
+				reg_data = PSW & 8'h7f; //N = 0
 			else if(temp_A < X)
-				reg_data = PSW | 16'h80; //N = 1
+				reg_data = PSW | 8'h80; //N = 1
 			else if(temp_A == X)
-				reg_data = PSW | 16'h02; //Z = 1
+				reg_data = PSW | 8'h02; //Z = 1
 			reg_addr = 4; //PSW
 			reg_write = 1;
 			halt_f_to_d = 0;
@@ -1192,11 +1277,11 @@ always @(posedge execute_instt) begin
 		
 	20: begin //CPY
 			if(temp_A > Y)
-				reg_data = PSW & 16'h7f; //N = 0
+				reg_data = PSW & 8'h7f; //N = 0
 			else if(temp_A < Y)
-				reg_data = PSW | 16'h80; //N = 1
+				reg_data = PSW | 8'h80; //N = 1
 			else if(temp_A == Y)
-				reg_data = PSW | 16'h02; //Z = 1
+				reg_data = PSW | 8'h02; //Z = 1
 			reg_addr = 4; //PSW
 			reg_write = 1;
 			halt_f_to_d = 0;
@@ -1207,6 +1292,26 @@ always @(posedge execute_instt) begin
 		
 	21: begin //DEC
 			memory_access = 0;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	22: begin //DEX
+			reg_addr = 1; //X
+			reg_write = 1;
+			reg_data = X - 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	23: begin //DEY
+			reg_addr = 2; //Y
+			reg_write = 1;
+			reg_data = Y - 1;
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			clk_count = 0;
@@ -1225,6 +1330,26 @@ always @(posedge execute_instt) begin
 				
 	25: begin //INC
 			memory_access = 0;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	26: begin //INX
+			reg_addr = 1; //X
+			reg_write = 1;
+			reg_data = X + 1;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	27: begin //INY
+			reg_addr = 2; //Y
+			reg_write = 1;
+			reg_data = Y + 1;
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			clk_count = 0;
@@ -1300,6 +1425,64 @@ always @(posedge execute_instt) begin
 			clk_counter = 0;
 		end
 	
+	36: begin //PHA
+			mem_data_out = A;
+			addr_bus = {8'hff,SP};
+			rw_n = 0;
+			reg_data = SP - 1;
+			reg_write = 1;
+			reg_addr = 5; //SP
+			memory_access = 1;
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			clk_count = 2;
+			clk_counter = 1;
+		end
+		
+	37: begin //PHP
+			mem_data_out = PSW;
+			addr_bus = {8'hff,SP};
+			rw_n = 0;
+			reg_data = SP - 1;
+			reg_write = 1;
+			reg_addr = 5; //SP
+			memory_access = 1;
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			clk_count = 2;
+			clk_counter = 1;
+		end
+
+	38: begin //PLA
+			reg_data = SP + 1;
+			reg_write = 1;
+			reg_addr = 5; //SP
+			
+			addr_bus = {8'hff,SP + 1};
+			rw_n = 1;
+			memory_access = 1;
+			
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			clk_count = 3;
+			clk_counter = 1;
+		end	
+	
+	39: begin //PLP
+			reg_data = SP + 1;
+			reg_write = 1;
+			reg_addr = 5; //SP
+			
+			addr_bus = {8'hff,SP + 1};
+			rw_n = 1;
+			memory_access = 1;
+			
+			halt_f_to_d = 1;
+			halt_d_to_e = 1;
+			clk_count = 3;
+			clk_counter = 1;
+		end
+	
 	40: begin	//ROL
 			if(d_to_e_reg[35:32] == 1) //Accumulator addressing mode
 			begin
@@ -1346,10 +1529,110 @@ always @(posedge execute_instt) begin
 			end
 		end
 		
+	44: begin //SBC
+			reg_addr = 0; //A
+			reg_write = 1;
+			reg_data = A - temp_A - ~PSW[0];	
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	45: begin //SEC
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			reg_data = PSW | ~8'hfe;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	46: begin //SED
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			reg_data = PSW | ~8'hf7;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	47: begin //SEI
+			reg_addr = 4; //PSW
+			reg_write = 1;
+			reg_data = PSW | ~8'hfb;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
 	48 || 49 || 50: begin //STA
 			halt_f_to_d = 0;
 			halt_d_to_e = 0;
 			rw_n = 1;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+		51: begin //TAX
+			reg_addr = 1; //X
+			reg_write = 1;
+			reg_data = A;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+		52: begin //TAY
+			reg_addr = 2; //Y
+			reg_write = 1;
+			reg_data = A;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+		53: begin //TSX
+			reg_addr = 1; //X
+			reg_write = 1;
+			reg_data = SP;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+	  54: begin //TXA
+			reg_addr = 0; //A
+			reg_write = 1;
+			reg_data = X;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+		55: begin //TXS
+			reg_addr = 5; //SP
+			reg_write = 1;
+			reg_data = X;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
+			clk_count = 0;
+			clk_counter = 0;
+		end
+		
+		56: begin //TYA
+			reg_addr = 0; //A
+			reg_write = 1;
+			reg_data = Y;
+			halt_f_to_d = 0;
+			halt_d_to_e = 0;
 			clk_count = 0;
 			clk_counter = 0;
 		end
